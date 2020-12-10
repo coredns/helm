@@ -1,0 +1,1 @@
+# Coredns Helm chart repository
