@@ -2,10 +2,6 @@
 
 [CoreDNS](https://coredns.io/) is a DNS server that chains plugins and provides DNS Services
 
-## DEPRECATION NOTICE
-
-This chart is deprecated and no longer supported.
-
 # TL;DR;
 
 ```console
