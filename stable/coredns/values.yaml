@@ -135,6 +135,23 @@ servers:
 #       hello world
 #       foo bar
 
+# To use the livenessProbe, the health plugin needs to be enabled in CoreDNS' server config
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 5
+  successThreshold: 1
+# To use the readinessProbe, the ready plugin needs to be enabled in CoreDNS' server config
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 5
+  successThreshold: 1
+
 # expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#affinity-v1-core
 # for example:
 #   affinity:
