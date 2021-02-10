@@ -192,7 +192,7 @@ extraSecrets: []
 # - name: some-fancy-secret
 #   mountPath: /etc/wherever
 
-# Custom labels to apply to Deployment, Pod, Service, ServiceMonitor. Including autoscaler if enabled.
+# Custom labels to apply to Deployment, Pod, Configmap, Service, ServiceMonitor. Including autoscaler if enabled.
 customLabels: {}
 
 ## Alternative configuration for HPA deployment if wanted
