@@ -5,7 +5,7 @@
 # TL;DR;
 
 ```console
-$ helm install --name coredns --namespace=kube-system stable/coredns
+$ helm install coredns  --namespace=kube-system coredns/coredns
 ```
 
 ## Introduction
@@ -25,7 +25,8 @@ This chart bootstraps a [CoreDNS](https://github.com/coredns/coredns) deployment
 The chart can be installed as follows:
 
 ```console
-$ helm install --name coredns --namespace=kube-system stable/coredns
+$ helm repo add coredns https://coredns.github.io/helm
+$ helm install coredns  --namespace=kube-system coredns/coredns
 ```
 
 The command deploys CoreDNS on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists various ways to override default configuration during deployment.
@@ -34,7 +35,7 @@ The command deploys CoreDNS on the Kubernetes cluster in the default configurati
 
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall/delete the `coredns` deployment:
 
 ```console
 $ helm delete coredns
@@ -47,7 +48,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | Parameter                               | Description                                                                           | Default                                                     |
 |:----------------------------------------|:--------------------------------------------------------------------------------------|:------------------------------------------------------------|
 | `image.repository`                      | The image repository to pull from                                                     | coredns/coredns                                             |
-| `image.tag`                             | The image tag to pull from                                                            | `v1.7.1`                                                    |
+| `image.tag`                             | The image tag to pull from                                                            | `1.8.0`                                                    |
 | `image.pullPolicy`                      | Image pull policy                                                                     | IfNotPresent                                                |
 | `replicaCount`                          | Number of replicas                                                                    | 1                                                           |
 | `resources.limits.cpu`                  | Container maximum CPU                                                                 | `100m`                                                      |
@@ -98,7 +99,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `autoscaler.includeUnschedulableNodes`  | Should the replicas scale based on the total number or only schedulable nodes         | `false`                                                     |
 | `autoscaler.preventSinglePointFailure`  | If true does not allow single points of failure to form                               | `true`                                                      |
 | `autoscaler.image.repository`           | The image repository to pull autoscaler from                                          | k8s.gcr.io/cluster-proportional-autoscaler-amd64            |
-| `autoscaler.image.tag`                  | The image tag to pull autoscaler from                                                 | `1.7.1`                                                     |
+| `autoscaler.image.tag`                  | The image tag to pull autoscaler from                                                 | `1.8.0`                                                     |
 | `autoscaler.image.pullPolicy`           | Image pull policy for the autoscaler                                                  | IfNotPresent                                                |
 | `autoscaler.priorityClassName`          | Optional priority class for the autoscaler pod. `priorityClassName` used if not set.  | `""`                                                        |
 | `autoscaler.affinity`                   | Affinity settings for pod assignment for autoscaler                                   | {}                                                          |
@@ -113,9 +114,9 @@ The command removes all the Kubernetes components associated with the chart and 
 See `values.yaml` for configuration notes. Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
-$ helm install --name coredns \
+$ helm install coredns \
   --set rbac.create=false \
-    stable/coredns
+    coredns/coredns
 ```
 
 The above command disables automatic creation of RBAC rules.
@@ -123,7 +124,7 @@ The above command disables automatic creation of RBAC rules.
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-$ helm install --name coredns -f values.yaml stable/coredns
+$ helm install coredns  --namespace=kube-system coredns/coredns -f values.yaml 
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
