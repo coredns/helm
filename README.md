@@ -10,5 +10,5 @@ This repository provides helm chart repo.
 
 ```
 helm repo add coredns https://coredns.github.io/helm
-helm install coredns/
+helm install --name coredns --namespace=kube-system stable/coredns
 ```
