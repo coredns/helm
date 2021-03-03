@@ -31,7 +31,7 @@ $ helm install coredns  --namespace=kube-system coredns/coredns
 
 The command deploys CoreDNS on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists various ways to override default configuration during deployment.
 
-> **Tip**: List all releases using `helm list`
+> **Tip**: List all releases using `helm list --all-namespaces`
 
 ## Uninstalling the Chart
 
