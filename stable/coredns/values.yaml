@@ -63,6 +63,8 @@ service:
 # loadBalancerIP: ""
 # externalIPs: []
 # externalTrafficPolicy: ""
+  # The name of the Service
+  # If not set, a name is generated using the fullname template
   name:
   annotations: {}
 
