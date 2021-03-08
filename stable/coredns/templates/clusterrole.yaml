@@ -24,6 +24,13 @@ rules:
   verbs:
   - list
   - watch
+- apiGroups:
+  - discovery.k8s.io
+  resources:
+  - endpointslices
+  verbs:
+  - list
+  - watch
 {{- if .Values.rbac.pspEnable }}
 - apiGroups:
   - policy
