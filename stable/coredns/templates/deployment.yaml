@@ -12,6 +12,7 @@ metadata:
     kubernetes.io/name: "CoreDNS"
     {{- end }}
     app.kubernetes.io/name: {{ template "coredns.name" . }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- if .Values.customLabels }}
 {{ toYaml .Values.customLabels | indent 4 }}
 {{- end }}
