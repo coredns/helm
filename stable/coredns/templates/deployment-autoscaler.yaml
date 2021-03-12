@@ -71,7 +71,7 @@ spec:
           - /cluster-proportional-autoscaler
           - --namespace={{ .Release.Namespace }}
           - --configmap={{ template "coredns.fullname" . }}-autoscaler
-          - --target=Deployment/{{ template "coredns.fullname" . }}
+          - --target=Deployment/{{ default (include "coredns.fullname" .) .Values.deployment.name }}
           - --logtostderr=true
           - --v=2
 {{- end }}

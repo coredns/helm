@@ -271,3 +271,7 @@ autoscaler:
     ## Annotations for the coredns-autoscaler configmap
     # i.e. strategy.spinnaker.io/versioned: "false" to ensure configmap isn't renamed
     annotations: {}
+
+deployment:
+  enabled: true
+  name: ""
