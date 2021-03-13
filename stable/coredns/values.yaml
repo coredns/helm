@@ -65,14 +65,14 @@ service:
 # externalTrafficPolicy: ""
   # The name of the Service
   # If not set, a name is generated using the fullname template
-  name:
+  name: ""
   annotations: {}
 
 serviceAccount:
   create: false
   # The name of the ServiceAccount to use
   # If not set and create is true, a name is generated using the fullname template
-  name:
+  name: ""
   annotations: {}
 
 rbac:
