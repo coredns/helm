@@ -8,9 +8,9 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
-    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    helm.sh/chart: "{{ template "coredns.name" . }}-{{ .Chart.Version | replace "+" "_" }}"
     {{- if .Values.isClusterService }}
-    k8s-app: {{ .Chart.Name }}-autoscaler
+    k8s-app: {{ template "coredns.name" . }}-autoscaler
     kubernetes.io/cluster-service: "true"
     kubernetes.io/name: "CoreDNS"
     {{- end }}
@@ -23,14 +23,14 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: {{ .Release.Name | quote }}
       {{- if .Values.isClusterService }}
-      k8s-app: {{ .Chart.Name }}-autoscaler
+      k8s-app: {{ template "coredns.name" . }}-autoscaler
       {{- end }}
       app.kubernetes.io/name: {{ template "coredns.name" . }}-autoscaler
   template:
     metadata:
       labels:
         {{- if .Values.isClusterService }}
-        k8s-app: {{ .Chart.Name }}-autoscaler
+        k8s-app: {{ template "coredns.name" . }}-autoscaler
         {{- end }}
         app.kubernetes.io/name: {{ template "coredns.name" . }}-autoscaler
         app.kubernetes.io/instance: {{ .Release.Name | quote }}

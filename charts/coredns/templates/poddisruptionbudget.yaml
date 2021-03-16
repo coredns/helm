@@ -6,9 +6,9 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
-    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    helm.sh/chart: "{{ template "coredns.name" . }}-{{ .Chart.Version | replace "+" "_" }}"
     {{- if .Values.isClusterService }}
-    k8s-app: {{ .Chart.Name | quote }}
+    k8s-app: {{ template "coredns.name" . }}
     kubernetes.io/cluster-service: "true"
     kubernetes.io/name: "CoreDNS"
     {{- end }}
@@ -21,7 +21,7 @@ spec:
     matchLabels:
         app.kubernetes.io/instance: {{ .Release.Name | quote }}
         {{- if .Values.isClusterService }}
-        k8s-app: {{ .Chart.Name | quote }}
+        k8s-app: {{ template "coredns.name" . }}
         {{- end }}
         app.kubernetes.io/name: {{ template "coredns.name" . }}
 {{ toYaml .Values.podDisruptionBudget | indent 2 }}

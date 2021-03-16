@@ -2,6 +2,9 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# nameOverride allows to override the chart name for a custom one
+nameOverride: ""
+
 image:
   repository: coredns/coredns
   tag: "1.8.7"
