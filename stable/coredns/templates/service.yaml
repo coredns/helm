@@ -1,3 +1,5 @@
+{{- if .Values.deployment.enabled }}
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -40,3 +42,4 @@ spec:
   ports:
 {{ include "coredns.servicePorts" . | indent 2 -}}
   type: {{ default "ClusterIP" .Values.serviceType }}
+{{- end }}

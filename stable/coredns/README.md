@@ -5,7 +5,8 @@
 # TL;DR;
 
 ```console
-$ helm install coredns  --namespace=kube-system coredns/coredns
+$ helm repo add coredns https://coredns.github.io/helm
+$ helm --namespace=kube-system install coredns coredns/coredns
 ```
 
 ## Introduction
@@ -26,7 +27,7 @@ The chart can be installed as follows:
 
 ```console
 $ helm repo add coredns https://coredns.github.io/helm
-$ helm install coredns  --namespace=kube-system coredns/coredns
+$ helm --namespace=kube-system install coredns coredns/coredns
 ```
 
 The command deploys CoreDNS on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists various ways to override default configuration during deployment.
@@ -38,85 +39,87 @@ The command deploys CoreDNS on the Kubernetes cluster in the default configurati
 To uninstall/delete the `coredns` deployment:
 
 ```console
-$ helm delete coredns
+$ helm uninstall coredns
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Configuration
 
-| Parameter                               | Description                                                                           | Default                                                     |
-|:----------------------------------------|:--------------------------------------------------------------------------------------|:------------------------------------------------------------|
-| `image.repository`                      | The image repository to pull from                                                     | coredns/coredns                                             |
-| `image.tag`                             | The image tag to pull from                                                            | `1.8.0`                                                    |
-| `image.pullPolicy`                      | Image pull policy                                                                     | IfNotPresent                                                |
-| `replicaCount`                          | Number of replicas                                                                    | 1                                                           |
-| `resources.limits.cpu`                  | Container maximum CPU                                                                 | `100m`                                                      |
-| `resources.limits.memory`               | Container maximum memory                                                              | `128Mi`                                                     |
-| `resources.requests.cpu`                | Container requested CPU                                                               | `100m`                                                      |
-| `resources.requests.memory`             | Container requested memory                                                            | `128Mi`                                                     |
-| `serviceType`                           | Kubernetes Service type                                                               | `ClusterIP`                                                 |
-| `prometheus.service.enabled`            | Set this to `true` to create Service for Prometheus metrics                           | `false`                                                     |
-| `prometheus.service.annotations`        | Annotations to add to the metrics Service                                             | `{prometheus.io/scrape: "true", prometheus.io/port: "9153"}`|
-| `prometheus.monitor.enabled`            | Set this to `true` to create ServiceMonitor for Prometheus operator                   | `false`                                                     |
-| `prometheus.monitor.additionalLabels`   | Additional labels that can be used so ServiceMonitor will be discovered by Prometheus | {}                                                          |
-| `prometheus.monitor.namespace`          | Selector to select which namespaces the Endpoints objects are discovered from.        | `""`                                                        |
-| `service.clusterIP`                     | IP address to assign to service                                                       | `""`                                                        |
-| `service.loadBalancerIP`                | IP address to assign to load balancer (if supported)                                  | `""`                                                        |
-| `service.externalIPs`                   | External IP addresses                                                                 | []                                                          |
-| `service.externalTrafficPolicy`         | Enable client source IP preservation                                                  | []                                                          |
-| `service.annotations`                   | Annotations to add to service                                                         | {}                                                          |
-| `serviceAccount.create`                 | If true, create & use serviceAccount                                                  | false                                                       |
-| `serviceAccount.name`                   | If not set & create is true, use template fullname                                    |                                                             |
-| `rbac.create`                           | If true, create & use RBAC resources                                                  | true                                                        |
-| `rbac.pspEnable`                        | Specifies whether a PodSecurityPolicy should be created.                              | `false`                                                     |
-| `isClusterService`                      | Specifies whether chart should be deployed as cluster-service or normal k8s app.      | true                                                        |
-| `priorityClassName`                     | Name of Priority Class to assign pods                                                 | `""`                                                        |
-| `servers`                               | Configuration for CoreDNS and plugins                                                 | See values.yml                                              |
-| `affinity`                              | Affinity settings for pod assignment                                                  | {}                                                          |
-| `nodeSelector`                          | Node labels for pod assignment                                                        | {}                                                          |
-| `tolerations`                           | Tolerations for pod assignment                                                        | []                                                          |
-| `zoneFiles`                             | Configure custom Zone files                                                           | []                                                          |
-| `extraVolumes`                          | Optional array of volumes to create                                                   | []                                                          |
-| `extraVolumeMounts`                     | Optional array of volumes to mount inside the CoreDNS container                       | []                                                          |
-| `extraSecrets`                          | Optional array of secrets to mount inside the CoreDNS container                       | []                                                          |
-| `customLabels`                          | Optional labels for Deployment(s), Pod, Service, ServiceMonitor objects               | {}                                                          |
-| `rollingUpdate.maxUnavailable`          | Maximum number of unavailable replicas during rolling update                          | `1`                                                         |
-| `rollingUpdate.maxSurge`                | Maximum number of pods created above desired number of pods                           | `25%`                                                       |
-| `podDisruptionBudget`                   | Optional PodDisruptionBudget                                                          | {}                                                          |
-| `podAnnotations`                        | Optional Pod only Annotations                                                         | {}                                                          |
-| `terminationGracePeriodSeconds`         | Optional duration in seconds the pod needs to terminate gracefully.                   | 30                                                          |
-| `preStopSleep`                          | Definition of Kubernetes preStop hook executed before Pod termination                 | {}                                                          |
-| `hpa.enabled`                           | Enable Hpa autoscaler instead of proportional one                                     | `false`                                                     |
-| `hpa.minReplicas`                       | Hpa minimum number of CoreDNS replicas                                                | `1`                                                         |
-| `hpa.maxReplicas`                       | Hpa maximum number of CoreDNS replicas                                                | `2`                                                         |
-| `hpa.metrics`                           | Metrics definitions used by Hpa to scale up and down                                  | {}                                                          |
-| `autoscaler.enabled`                    | Optionally enabled a cluster-proportional-autoscaler for CoreDNS                      | `false`                                                     |
-| `autoscaler.coresPerReplica`            | Number of cores in the cluster per CoreDNS replica                                    | `256`                                                       |
-| `autoscaler.nodesPerReplica`            | Number of nodes in the cluster per CoreDNS replica                                    | `16`                                                        |
-| `autoscaler.min`                        | Min size of replicaCount                                                              | 0                                                           |
-| `autoscaler.max`                        | Max size of replicaCount                                                              | 0  (aka no max)                                             |
-| `autoscaler.includeUnschedulableNodes`  | Should the replicas scale based on the total number or only schedulable nodes         | `false`                                                     |
-| `autoscaler.preventSinglePointFailure`  | If true does not allow single points of failure to form                               | `true`                                                      |
-| `autoscaler.image.repository`           | The image repository to pull autoscaler from                                          | k8s.gcr.io/cluster-proportional-autoscaler-amd64            |
-| `autoscaler.image.tag`                  | The image tag to pull autoscaler from                                                 | `1.8.0`                                                     |
-| `autoscaler.image.pullPolicy`           | Image pull policy for the autoscaler                                                  | IfNotPresent                                                |
-| `autoscaler.priorityClassName`          | Optional priority class for the autoscaler pod. `priorityClassName` used if not set.  | `""`                                                        |
-| `autoscaler.affinity`                   | Affinity settings for pod assignment for autoscaler                                   | {}                                                          |
-| `autoscaler.nodeSelector`               | Node labels for pod assignment for autoscaler                                         | {}                                                          |
-| `autoscaler.tolerations`                | Tolerations for pod assignment for autoscaler                                         | []                                                          |
-| `autoscaler.resources.limits.cpu`       | Container maximum CPU for cluster-proportional-autoscaler                             | `20m`                                                       |
-| `autoscaler.resources.limits.memory`    | Container maximum memory for cluster-proportional-autoscaler                          | `10Mi`                                                      |
-| `autoscaler.resources.requests.cpu`     | Container requested CPU for cluster-proportional-autoscaler                           | `20m`                                                       |
-| `autoscaler.resources.requests.memory`  | Container requested memory for cluster-proportional-autoscaler                        | `10Mi`                                                      |
-| `autoscaler.configmap.annotations`      | Annotations to add to autoscaler config map. For example to stop CI renaming them     | {}                                                          |
+| Parameter                               | Description                                                                                                                               | Default                                                     |
+|:----------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------|
+| `image.repository`                      | The image repository to pull from                                                                                                         | coredns/coredns                                             |
+| `image.tag`                             | The image tag to pull from                                                                                                                | `1.8.0`                                                     |
+| `image.pullPolicy`                      | Image pull policy                                                                                                                         | IfNotPresent                                                |
+| `replicaCount`                          | Number of replicas                                                                                                                        | 1                                                           |
+| `resources.limits.cpu`                  | Container maximum CPU                                                                                                                     | `100m`                                                      |
+| `resources.limits.memory`               | Container maximum memory                                                                                                                  | `128Mi`                                                     |
+| `resources.requests.cpu`                | Container requested CPU                                                                                                                   | `100m`                                                      |
+| `resources.requests.memory`             | Container requested memory                                                                                                                | `128Mi`                                                     |
+| `serviceType`                           | Kubernetes Service type                                                                                                                   | `ClusterIP`                                                 |
+| `prometheus.service.enabled`            | Set this to `true` to create Service for Prometheus metrics                                                                               | `false`                                                     |
+| `prometheus.service.annotations`        | Annotations to add to the metrics Service                                                                                                 | `{prometheus.io/scrape: "true", prometheus.io/port: "9153"}`|
+| `prometheus.monitor.enabled`            | Set this to `true` to create ServiceMonitor for Prometheus operator                                                                       | `false`                                                     |
+| `prometheus.monitor.additionalLabels`   | Additional labels that can be used so ServiceMonitor will be discovered by Prometheus                                                     | {}                                                          |
+| `prometheus.monitor.namespace`          | Selector to select which namespaces the Endpoints objects are discovered from.                                                            | `""`                                                        |
+| `service.clusterIP`                     | IP address to assign to service                                                                                                           | `""`                                                        |
+| `service.loadBalancerIP`                | IP address to assign to load balancer (if supported)                                                                                      | `""`                                                        |
+| `service.externalIPs`                   | External IP addresses                                                                                                                     | []                                                          |
+| `service.externalTrafficPolicy`         | Enable client source IP preservation                                                                                                      | []                                                          |
+| `service.annotations`                   | Annotations to add to service                                                                                                             | {}                                                          |
+| `serviceAccount.create`                 | If true, create & use serviceAccount                                                                                                      | false                                                       |
+| `serviceAccount.name`                   | If not set & create is true, use template fullname                                                                                        |                                                             |
+| `rbac.create`                           | If true, create & use RBAC resources                                                                                                      | true                                                        |
+| `rbac.pspEnable`                        | Specifies whether a PodSecurityPolicy should be created.                                                                                  | `false`                                                     |
+| `isClusterService`                      | Specifies whether chart should be deployed as cluster-service or normal k8s app.                                                          | true                                                        |
+| `priorityClassName`                     | Name of Priority Class to assign pods                                                                                                     | `""`                                                        |
+| `servers`                               | Configuration for CoreDNS and plugins                                                                                                     | See values.yml                                              |
+| `affinity`                              | Affinity settings for pod assignment                                                                                                      | {}                                                          |
+| `nodeSelector`                          | Node labels for pod assignment                                                                                                            | {}                                                          |
+| `tolerations`                           | Tolerations for pod assignment                                                                                                            | []                                                          |
+| `zoneFiles`                             | Configure custom Zone files                                                                                                               | []                                                          |
+| `extraVolumes`                          | Optional array of volumes to create                                                                                                       | []                                                          |
+| `extraVolumeMounts`                     | Optional array of volumes to mount inside the CoreDNS container                                                                           | []                                                          |
+| `extraSecrets`                          | Optional array of secrets to mount inside the CoreDNS container                                                                           | []                                                          |
+| `customLabels`                          | Optional labels for Deployment(s), Pod, Service, ServiceMonitor objects                                                                   | {}                                                          |
+| `rollingUpdate.maxUnavailable`          | Maximum number of unavailable replicas during rolling update                                                                              | `1`                                                         |
+| `rollingUpdate.maxSurge`                | Maximum number of pods created above desired number of pods                                                                               | `25%`                                                       |
+| `podDisruptionBudget`                   | Optional PodDisruptionBudget                                                                                                              | {}                                                          |
+| `podAnnotations`                        | Optional Pod only Annotations                                                                                                             | {}                                                          |
+| `terminationGracePeriodSeconds`         | Optional duration in seconds the pod needs to terminate gracefully.                                                                       | 30                                                          |
+| `preStopSleep`                          | Definition of Kubernetes preStop hook executed before Pod termination                                                                     | {}                                                          |
+| `hpa.enabled`                           | Enable Hpa autoscaler instead of proportional one                                                                                         | `false`                                                     |
+| `hpa.minReplicas`                       | Hpa minimum number of CoreDNS replicas                                                                                                    | `1`                                                         |
+| `hpa.maxReplicas`                       | Hpa maximum number of CoreDNS replicas                                                                                                    | `2`                                                         |
+| `hpa.metrics`                           | Metrics definitions used by Hpa to scale up and down                                                                                      | {}                                                          |
+| `autoscaler.enabled`                    | Optionally enabled a cluster-proportional-autoscaler for CoreDNS                                                                          | `false`                                                     |
+| `autoscaler.coresPerReplica`            | Number of cores in the cluster per CoreDNS replica                                                                                        | `256`                                                       |
+| `autoscaler.nodesPerReplica`            | Number of nodes in the cluster per CoreDNS replica                                                                                        | `16`                                                        |
+| `autoscaler.min`                        | Min size of replicaCount                                                                                                                  | 0                                                           |
+| `autoscaler.max`                        | Max size of replicaCount                                                                                                                  | 0  (aka no max)                                             |
+| `autoscaler.includeUnschedulableNodes`  | Should the replicas scale based on the total number or only schedulable nodes                                                             | `false`                                                     |
+| `autoscaler.preventSinglePointFailure`  | If true does not allow single points of failure to form                                                                                   | `true`                                                      |
+| `autoscaler.image.repository`           | The image repository to pull autoscaler from                                                                                              | k8s.gcr.io/cluster-proportional-autoscaler-amd64            |
+| `autoscaler.image.tag`                  | The image tag to pull autoscaler from                                                                                                     | `1.8.0`                                                     |
+| `autoscaler.image.pullPolicy`           | Image pull policy for the autoscaler                                                                                                      | IfNotPresent                                                |
+| `autoscaler.priorityClassName`          | Optional priority class for the autoscaler pod. `priorityClassName` used if not set.                                                      | `""`                                                        |
+| `autoscaler.affinity`                   | Affinity settings for pod assignment for autoscaler                                                                                       | {}                                                          |
+| `autoscaler.nodeSelector`               | Node labels for pod assignment for autoscaler                                                                                             | {}                                                          |
+| `autoscaler.tolerations`                | Tolerations for pod assignment for autoscaler                                                                                             | []                                                          |
+| `autoscaler.resources.limits.cpu`       | Container maximum CPU for cluster-proportional-autoscaler                                                                                 | `20m`                                                       |
+| `autoscaler.resources.limits.memory`    | Container maximum memory for cluster-proportional-autoscaler                                                                              | `10Mi`                                                      |
+| `autoscaler.resources.requests.cpu`     | Container requested CPU for cluster-proportional-autoscaler                                                                               | `20m`                                                       |
+| `autoscaler.resources.requests.memory`  | Container requested memory for cluster-proportional-autoscaler                                                                            | `10Mi`                                                      |
+| `autoscaler.configmap.annotations`      | Annotations to add to autoscaler config map. For example to stop CI renaming them                                                         | {}                                                          |
+| `deployment.enabled`                    | Optionally disable the main deployment and its respective resources.                                                                      | `true`                                                      |
+| `deployment.name`                       | Name of the deployment if `deployment.enabled` is true. Otherwise the name of an existing deployment for the autoscaler or HPA to target. | `""`                                                        |
 
 See `values.yaml` for configuration notes. Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
 $ helm install coredns \
-  --set rbac.create=false \
-    coredns/coredns
+  coredns/coredns \
+  --set rbac.create=false
 ```
 
 The above command disables automatic creation of RBAC rules.
@@ -124,7 +127,7 @@ The above command disables automatic creation of RBAC rules.
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-$ helm install coredns  --namespace=kube-system coredns/coredns -f values.yaml 
+$ helm install coredns coredns/coredns -f values.yaml
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml)

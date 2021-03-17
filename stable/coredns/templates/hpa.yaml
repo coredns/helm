@@ -21,7 +21,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ template "coredns.fullname" . }}
+    name: {{ default (include "coredns.fullname" .) .Values.deployment.name }}
   minReplicas: {{ .Values.hpa.minReplicas }}
   maxReplicas: {{ .Values.hpa.maxReplicas }}
   metrics:
