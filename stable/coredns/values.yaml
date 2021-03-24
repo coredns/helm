@@ -244,7 +244,7 @@ autoscaler:
 
   image:
     repository: k8s.gcr.io/cluster-proportional-autoscaler-amd64
-    tag: "1.8.0"
+    tag: "1.8.1"
     pullPolicy: IfNotPresent
 
   # Optional priority class to be used for the autoscaler pods. priorityClassName used if not set.
