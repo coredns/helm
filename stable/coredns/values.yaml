@@ -276,5 +276,6 @@ autoscaler:
     annotations: {}
 
 deployment:
+  skipConfig: false
   enabled: true
   name: ""

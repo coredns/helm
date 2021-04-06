@@ -1,4 +1,5 @@
-{{- if .Values.deployment.enabled }}
+{{- if .Values.deployment.enabled  }}
+{{- if not .Values.deployment.skipConfig }}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -33,4 +34,5 @@ data:
   {{- range .Values.zoneFiles }}
   {{ .filename }}: {{ toYaml .contents | indent 4 }}
   {{- end }}
+{{- end }}
 {{- end }}
