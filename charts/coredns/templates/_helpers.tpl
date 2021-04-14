@@ -57,10 +57,9 @@ Generate the list of ports automatically from the server definitions
             {{- end -}}
         {{- end -}}
 
-        {{/* If none of the zones specify scheme, default to dns:// on both tcp & udp */}}
+        {{/* If none of the zones specify scheme, default to dns:// udp */}}
         {{- if and (not (index $innerdict "istcp")) (not (index $innerdict "isudp")) -}}
             {{- $innerdict := set $innerdict "isudp" true -}}
-            {{- $innerdict := set $innerdict "istcp" true -}}
         {{- end -}}
 
         {{/* Write the dict back into the outer dict */}}
