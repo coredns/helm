@@ -127,6 +127,10 @@ spec:
             exec:
               command: ["/usr/bin/sleep", "{{ .Values.preStopSleep }}"]
         {{- end }}
+{{- if .Values.securityContext }}
+        securityContext:
+{{- toYaml .Values.securityContext | nindent 10 }}
+{{- end }}
       volumes:
         - name: config-volume
           configMap:
