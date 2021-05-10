@@ -147,3 +147,22 @@ Create the name of the service account to use
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Use env.secret and env.normal keys to define container environment variables
+*/}}
+{{- define "helpers.listEnvVariables" -}}
+{{- range $key, $val := .Values.env.secret }}
+- name: {{ $key }}
+  valueFrom:
+    secretKeyRef:
+      name: {{ required "In order to use env.secret, envSecretName value must be defined" $.Values.envSecretName }}
+      key: {{ $key }}
+{{- end}}
+{{- range $key, $val := .Values.env.normal }}
+- name: {{ $key }}
+  value: {{ $val | quote }}
+{{- end -}}
+{{- end -}}
+
+#      name: {{required "In order to use env.secret, envSecretName value must be defined" .Values.envSecretName }}

@@ -82,6 +82,8 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args: [ "-conf", "/etc/coredns/Corefile" ]
+        env:
+          {{- include "helpers.listEnvVariables" . | indent 10 }}
         volumeMounts:
         - name: config-volume
           mountPath: /etc/coredns

@@ -7,6 +7,14 @@ image:
   tag: "1.8.0"
   pullPolicy: IfNotPresent
 
+env: {}
+# normal: # Not secret env vars
+#   normal_key1: normal_val1
+#   normal_key2: normal_val2
+# secret:
+#   secret_key1: secret_val1
+#   secret_key2: secret_val2
+
 replicaCount: 1
 
 resources:
