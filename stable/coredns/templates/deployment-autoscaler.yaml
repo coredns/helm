@@ -44,6 +44,11 @@ spec:
         scheduler.alpha.kubernetes.io/tolerations: '[{"key":"CriticalAddonsOnly", "operator":"Exists"}]'
         {{- end }}
     spec:
+      {{- if .Values.autoscaler.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range .Values.autoscaler.image.pullSecrets }}
+        - name: {{ . }}
+      {{- end }}
       serviceAccountName: {{ template "coredns.fullname" . }}-autoscaler
       {{- $priorityClassName := default .Values.priorityClassName .Values.autoscaler.priorityClassName }}
       {{- if $priorityClassName }}
