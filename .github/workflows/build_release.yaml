@@ -1,0 +1,50 @@
+name: Build and release helm chart
+ 
+on:
+  push:
+    branches: 
+      main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Find tag from helm chart
+        run: |
+          echo HELM_VERSION=$(grep "version: " chart/Chart.yaml | cut -f2 -d' ') >> $GITHUB_ENV
+    
+      - name: Helm lint
+        run: helm lint chart
+
+      # Build the archive to release
+      - name: Build
+        run: helm package chart
+
+      # Create the release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with: 
+          tag_name: ${{ env.HELM_VERSION }}
+          release_name: Release ${{ env.HELM_VERSION }}
+          draft: false
+          prerelease: false
+
+      # Connect the archive to the release
+      - name: Set CHART_NAME env
+        run: |
+          echo "CHART_NAME=$(helm show chart chart/ | grep ^"name: " | cut -f2- -d' ')" >> $GITHUB_ENV
+          
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}  
+          asset_path: ./${{ env.CHART_NAME }}-${{ env.HELM_VERSION }}.tgz
+          asset_name: ./${{ env.CHART_NAME }}-${{ env.HELM_VERSION }}.tgz
+          asset_content_type: application/zip
