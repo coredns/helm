@@ -1,0 +1,42 @@
+name: Helm Chart Version Check
+on:
+  pull_request:
+    branches: 
+      - main
+jobs:
+  check_version:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout main to get latest tag
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: 'Get Previous tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+    # Get next valid semvers
+      - name: 'Get next versions'
+        id: semvers
+        uses: "WyriHaximus/github-action-next-semvers@v1"
+        with:
+          version: ${{ steps.previoustag.outputs.tag }}
+
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Get helm chart version
+        run: | 
+          echo HELM_VERSION=$(grep "version: " chart/Chart.yaml | cut -f2 -d' ') >> $GITHUB_ENV
+          
+      - name: Print version
+        run: echo ${{ env.HELM_VERSION }}
+        
+      - name: Check versions
+        if: ${{ env.HELM_VERSION != steps.semvers.outputs.v_patch && env.HELM_VERSION != steps.semvers.outputs.v_minor && env.HELM_VERSION != steps.semvers.outputs.v_major }}
+        run: |
+          echo "helm chart version does not match any of ${{steps.semvers.outputs.v_patch}}, ${{steps.semvers.outputs.v_minor}} or ${{steps.semvers.outputs.v_major}}"
+          exit 1
