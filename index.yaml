@@ -5,9 +5,35 @@ entries:
       artifacthub.io/changes: |
         - Initial helm chart changelog
     apiVersion: v2
+    appVersion: 1.8.4
+    created: "2021-06-17T15:23:20.576137019Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 4b33d74f079b66465b03ea0a5c2cfba240bb1db6e8ec0969d217dac060950344
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.16.0/coredns-1.16.0.tgz
+    version: 1.16.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Initial helm chart changelog
+    apiVersion: v2
     appVersion: 1.8.0
     created: "2021-05-26T23:08:46.511461422Z"
-    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes DNS Services
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
     digest: f89c2e2b127f2e761625add74a7aabd38b797543d82147426cd1f7b335a00e0a
     home: https://coredns.io
     icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -31,7 +57,8 @@ entries:
     apiVersion: v2
     appVersion: 1.8.0
     created: "2021-03-17T19:15:12.675005834Z"
-    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes DNS Services
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
     digest: 80e28534af72f9d53deb1b829fcc4d0034cefee9805a41fb33a3cfaed6316880
     home: https://coredns.io
     icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -55,7 +82,8 @@ entries:
     apiVersion: v2
     appVersion: 1.8.0
     created: "2021-03-16T08:44:58.466833361Z"
-    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes DNS Services
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
     digest: 70d2e0681b94357da107680f0ade4161aefb55106335bc34448064f7814ddf8c
     home: https://coredns.io
     icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -79,7 +107,8 @@ entries:
     apiVersion: v2
     appVersion: 1.8.0
     created: "2021-01-28T08:37:56.766753773Z"
-    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes DNS Services
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
     digest: 5b44a001317aeccfd3f61a8eb3d53c1196f788d7aa0feadf06a5c79f7693c848
     home: https://coredns.io
     icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -103,7 +132,8 @@ entries:
     apiVersion: v2
     appVersion: 1.8.0
     created: "2020-12-10T13:18:53.87712+01:00"
-    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes DNS Services
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
     digest: 4028f885749843ae30e813d870f4a093711008cec31acd7e89c7ac7b9abc4bcd
     home: https://coredns.io
     icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -121,4 +151,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2020-12-10T13:18:53.875896+01:00"
+generated: "2021-06-17T15:23:20.576158519Z"
