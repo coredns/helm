@@ -67,6 +67,18 @@ spec:
         imagePullPolicy: {{ .Values.autoscaler.image.pullPolicy }}
         resources:
 {{ toYaml .Values.autoscaler.resources | indent 10 }}
+        {{- if .Values.autoscaler.livenessProbe.enabled }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: {{ .Values.autoscaler.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.autoscaler.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.autoscaler.livenessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.autoscaler.livenessProbe.successThreshold }}
+          failureThreshold: {{ .Values.autoscaler.livenessProbe.failureThreshold }}
+        {{- end }}
         command:
           - /cluster-proportional-autoscaler
           - --namespace={{ .Release.Namespace }}
