@@ -275,6 +275,15 @@ autoscaler:
     # i.e. strategy.spinnaker.io/versioned: "false" to ensure configmap isn't renamed
     annotations: {}
 
+  # Enables the livenessProbe for cluster-proportional-autoscaler - this requires version 1.8.0+ of the autoscaler
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 10
+    periodSeconds: 5
+    timeoutSeconds: 5
+    failureThreshold: 3
+    successThreshold: 1
+
 deployment:
   enabled: true
   name: ""
