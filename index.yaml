@@ -6,6 +6,31 @@ entries:
         - Initial helm chart changelog
     apiVersion: v2
     appVersion: 1.8.4
+    created: "2021-07-24T17:35:31.367313224Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: d7015cc7970f7304d8b023d12a854f1684f5b79b120e3eea22b78ac590d05b35
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.16.3/coredns-1.16.3.tgz
+    version: 1.16.3
+  - annotations:
+      artifacthub.io/changes: |
+        - Initial helm chart changelog
+    apiVersion: v2
+    appVersion: 1.8.4
     created: "2021-07-22T10:57:31.945474685Z"
     description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
       DNS Services
@@ -201,4 +226,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2021-07-22T10:57:31.945533388Z"
+generated: "2021-07-24T17:35:31.367835333Z"
