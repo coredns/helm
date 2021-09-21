@@ -161,6 +161,11 @@ readinessProbe:
   failureThreshold: 5
   successThreshold: 1
 
+# specify security configuration that will be applied to a container - https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#securitycontext-v1-core
+securityContext:
+  runAsNonRoot: false
+  readOnlyRootFilesystem: true
+
 # expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#affinity-v1-core
 # for example:
 #   affinity:
