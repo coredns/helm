@@ -101,7 +101,7 @@ priorityClassName: ""
 servers:
 - zones:
   - zone: .
-  port: 53
+  port: 5353
   plugins:
   - name: errors
   # Serves a /health endpoint on :8080, required for livenessProbe
