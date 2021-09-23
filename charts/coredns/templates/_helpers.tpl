@@ -63,17 +63,30 @@ Generate the list of ports automatically from the server definitions
             {{- $innerdict := set $innerdict "istcp" true -}}
         {{- end -}}
 
+        {{- if .nodePort -}}
+            {{- $innerdict := set $innerdict "nodePort" .nodePort -}}
+        {{- end -}}
+
         {{/* Write the dict back into the outer dict */}}
         {{- $ports := set $ports $port $innerdict -}}
     {{- end -}}
 
     {{/* Write out the ports according to the info collected above */}}
     {{- range $port, $innerdict := $ports -}}
+        {{- $portList := list -}}
         {{- if index $innerdict "isudp" -}}
-            {{- printf "- {port: %v, protocol: UDP, name: udp-%s}\n" $port $port -}}
+            {{- $portList = append $portList (dict "port" ($port | int) "protocol" "UDP" "name" (printf "udp-%s" $port)) -}}
         {{- end -}}
         {{- if index $innerdict "istcp" -}}
-            {{- printf "- {port: %v, protocol: TCP, name: tcp-%s}\n" $port $port -}}
+            {{- $portList = append $portList (dict "port" ($port | int) "protocol" "TCP" "name" (printf "tcp-%s" $port)) -}}
+        {{- end -}}
+
+        {{- range $portDict := $portList -}}
+            {{- if index $innerdict "nodePort" -}}
+                {{- $portDict := set $portDict "nodePort" (get $innerdict "nodePort" | int) -}}
+            {{- end -}}
+
+            {{- printf "- %s\n" (toJson $portDict) -}}
         {{- end -}}
     {{- end -}}
 {{- end -}}
