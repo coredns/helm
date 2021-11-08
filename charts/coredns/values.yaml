@@ -144,6 +144,13 @@ servers:
 #       hello world
 #       foo bar
 
+# Extra configuration that is applied outside of the default zone block.
+# Example to include additional config files, which may come from extraVolumes:
+# extraConfig:
+#   import:
+#     parameters: /opt/coredns/*.conf
+extraConfig: {}
+
 # To use the livenessProbe, the health plugin needs to be enabled in CoreDNS' server config
 livenessProbe:
   enabled: true
