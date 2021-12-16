@@ -306,5 +306,6 @@ autoscaler:
     successThreshold: 1
 
 deployment:
+  skipConfig: false
   enabled: true
   name: ""
