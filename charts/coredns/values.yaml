@@ -170,7 +170,12 @@ readinessProbe:
   failureThreshold: 5
   successThreshold: 1
 
-# expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#affinity-v1-core
+# specify security configuration that will be applied to a container - https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#securitycontext-v1-core
+securityContext:
+  runAsNonRoot: false
+  readOnlyRootFilesystem: true
+
+# expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#affinity-v1-core
 # for example:
 #   affinity:
 #     nodeAffinity:
@@ -187,7 +192,7 @@ affinity: {}
 # Ref: https://kubernetes.io/docs/user-guide/node-selection/
 nodeSelector: {}
 
-# expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#toleration-v1-core
+# expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#toleration-v1-core
 # for example:
 #   tolerations:
 #   - key: foo.bar.com/role
@@ -271,14 +276,14 @@ autoscaler:
   # Optional priority class to be used for the autoscaler pods. priorityClassName used if not set.
   priorityClassName: ""
 
-  # expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#affinity-v1-core
+  # expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#affinity-v1-core
   affinity: {}
 
   # Node labels for pod assignment
   # Ref: https://kubernetes.io/docs/user-guide/node-selection/
   nodeSelector: {}
 
-  # expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#toleration-v1-core
+  # expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#toleration-v1-core
   tolerations: []
 
   # resources for autoscaler pod
