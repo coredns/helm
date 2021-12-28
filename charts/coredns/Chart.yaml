@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.19.10
+version: 1.19.11
 appVersion: 1.9.4
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png

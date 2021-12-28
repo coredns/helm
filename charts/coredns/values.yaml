@@ -244,7 +244,7 @@ extraSecrets: []
 # See https://github.com/coredns/helm/blob/master/charts/coredns/README.md#adopting-existing-coredns-resources
 # k8sAppLabelOverride: "kube-dns"
 
-# Custom labels to apply to Deployment, Pod, Configmap, Service, ServiceMonitor. Including autoscaler if enabled.
+# Custom labels to apply to Deployment, DaemonSet, Pod, Configmap, Service, ServiceMonitor. Including autoscaler if enabled.
 customLabels: {}
 
 # Custom annotations to apply to Deployment, Pod, Configmap, Service, ServiceMonitor. Including autoscaler if enabled.
@@ -334,4 +334,10 @@ deployment:
   enabled: true
   name: ""
   ## Annotations for the coredns deployment
+  annotations: {}
+
+daemonset:
+  enabled: false
+  name: ""
+  ## Annotations for the coredns daemonset
   annotations: {}
