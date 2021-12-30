@@ -63,6 +63,7 @@ prometheus:
     enabled: false
     additionalLabels: {}
     namespace: ""
+    interval: ""
 
 service:
 # clusterIP: ""

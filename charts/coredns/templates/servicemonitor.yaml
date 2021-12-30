@@ -30,4 +30,7 @@ spec:
       app.kubernetes.io/component: metrics
   endpoints:
     - port: metrics
+      {{- if .Values.prometheus.monitor.interval }}
+      interval: {{ .Values.prometheus.monitor.interval }}
+      {{- end }}
 {{- end }}
