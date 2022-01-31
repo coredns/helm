@@ -93,6 +93,10 @@ rbac:
 # isClusterService specifies whether chart should be deployed as cluster-service or normal k8s app.
 isClusterService: true
 
+# Override the value of k8s-app label applied to resources. This label is only set when isClusterService is true.
+# You may want to set this to "kube-dns" to maintain compatibility with systems looking for that.
+k8sAppLabel: "{{ .Chart.Name }}"
+
 # Optional priority class to be used for the coredns pods. Used for autoscaler if autoscaler.priorityClassName not set.
 priorityClassName: ""
 
