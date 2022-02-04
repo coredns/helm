@@ -19,6 +19,9 @@ metadata:
 {{- end }}
   annotations:
 {{ toYaml .Values.service.annotations | indent 4 }}
+{{- if .Values.customAnnotations }}
+{{ toYaml .Values.customAnnotations | indent 4 }}
+{{- end }}
 spec:
   selector:
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
