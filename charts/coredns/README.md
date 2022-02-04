@@ -96,6 +96,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `extraVolumeMounts`                             | Optional array of volumes to mount inside the CoreDNS container                                                                           | []                                                          |
 | `extraSecrets`                                  | Optional array of secrets to mount inside the CoreDNS container                                                                           | []                                                          |
 | `customLabels`                                  | Optional labels for Deployment(s), Pod, Service, ServiceMonitor objects                                                                   | {}                                                          |
+| `customAnnotations`                             | Optional annotations for Deployment(s), Pod, Service, ServiceMonitor objects
 | `rollingUpdate.maxUnavailable`                  | Maximum number of unavailable replicas during rolling update                                                                              | `1`                                                         |
 | `rollingUpdate.maxSurge`                        | Maximum number of pods created above desired number of pods                                                                               | `25%`                                                       |
 | `podDisruptionBudget`                           | Optional PodDisruptionBudget                                                                                                              | {}                                                          |
@@ -135,6 +136,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `autoscaler.livenessProbe.successThreshold`     | Minimum consecutive successes for the probe to be considered successful after having failed.                                              | `1`                                                         |
 | `deployment.enabled`                            | Optionally disable the main deployment and its respective resources.                                                                      | `true`                                                      |
 | `deployment.name`                               | Name of the deployment if `deployment.enabled` is true. Otherwise the name of an existing deployment for the autoscaler or HPA to target. | `""`                                                        |
+| `deployment.annotations`                        | Annotations to add to the main deployment                                                                                                 | `{}`                                                        |
 
 See `values.yaml` for configuration notes. Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 

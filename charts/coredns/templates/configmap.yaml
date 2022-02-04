@@ -17,6 +17,10 @@ metadata:
 {{- if .Values.customLabels }}
 {{ toYaml .Values.customLabels | indent 4 }}
 {{- end }}
+{{- with .Values.customAnnotations }}
+  annotations:
+{{- toYaml . | nindent 4 }}
+{{- end }}
 data:
   Corefile: |-
     {{- range $name, $conf := .Values.extraConfig }}

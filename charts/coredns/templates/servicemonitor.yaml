@@ -19,6 +19,10 @@ metadata:
     {{- if .Values.prometheus.monitor.additionalLabels }}
 {{ toYaml .Values.prometheus.monitor.additionalLabels | indent 4 }}
     {{- end }}
+{{- with .Values.customAnnotations }}
+  annotations:
+{{- toYaml . | nindent 4 }}
+{{- end }}
 spec:
   selector:
     matchLabels:

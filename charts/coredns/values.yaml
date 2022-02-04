@@ -231,6 +231,9 @@ extraSecrets: []
 # Custom labels to apply to Deployment, Pod, Configmap, Service, ServiceMonitor. Including autoscaler if enabled.
 customLabels: {}
 
+# Custom annotations to apply to Deployment, Pod, Configmap, Service, ServiceMonitor. Including autoscaler if enabled.
+customAnnotations: {}
+
 ## Alternative configuration for HPA deployment if wanted
 #
 hpa:
@@ -314,3 +317,5 @@ autoscaler:
 deployment:
   enabled: true
   name: ""
+  ## Annotations for the coredns deployment
+  annotations: {}
