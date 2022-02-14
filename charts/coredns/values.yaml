@@ -261,6 +261,11 @@ autoscaler:
   # If true does not allow single points of failure to form
   preventSinglePointFailure: true
 
+  ## Optionally specify some extra flags to pass to cluster-proprtional-autoscaler.
+  ## Useful for e.g. the nodelabels flag.
+  # customFlags:
+  #   - --nodelabels=topology.kubernetes.io/zone=us-east-1a
+
   image:
     repository: k8s.gcr.io/cluster-proportional-autoscaler-amd64
     tag: "1.8.1"

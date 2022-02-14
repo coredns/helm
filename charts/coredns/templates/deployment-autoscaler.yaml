@@ -90,4 +90,7 @@ spec:
           - --target=Deployment/{{ default (include "coredns.fullname" .) .Values.deployment.name }}
           - --logtostderr=true
           - --v=2
+        {{- if .Values.autoscaler.customFlags }}
+{{ toYaml .Values.autoscaler.customFlags | indent 10 }}
+        {{- end }}
 {{- end }}
