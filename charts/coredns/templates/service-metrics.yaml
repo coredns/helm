@@ -17,11 +17,17 @@ metadata:
 {{- if .Values.customLabels }}
 {{ toYaml .Values.customLabels | indent 4 }}
 {{- end }}
+{{- if or .Values.prometheus.service.annotations .Values.service.annotations .Values.customAnnotations }}
   annotations:
+{{- if .Values.prometheus.service.annotations }}
 {{ toYaml .Values.prometheus.service.annotations | indent 4 }}
+{{- end }}
+{{- if .Values.service.annotations }}
 {{ toYaml .Values.service.annotations | indent 4 }}
+{{- end }}
 {{- if .Values.customAnnotations }}
 {{ toYaml .Values.customAnnotations | indent 4 }}
+{{- end }}
 {{- end }}
 spec:
   selector:

@@ -18,11 +18,15 @@ metadata:
 {{- if .Values.customLabels }}
 {{ toYaml .Values.customLabels | indent 4 }}
 {{- end }}
-{{ if or .Values.deployment.annotations .Values.customAnnotations }}
+  {{- if or .Values.deployment.annotations .Values.customAnnotations }}
   annotations:
-{{ toYaml .Values.customAnnotations | indent 4 }}
-{{ toYaml .Values.deployment.annotations | indent 4 }}
-{{- end }}
+    {{- if .Values.customAnnotations }}
+    {{- toYaml .Values.customAnnotations | nindent 4 }}
+    {{- end }}
+    {{- if .Values.deployment.annotations }}
+    {{- toYaml .Values.deployment.annotations | nindent 4 }}
+    {{- end }}
+  {{- end }}
 spec:
   {{- if not .Values.autoscaler.enabled }}
   replicas: {{ .Values.replicaCount }}

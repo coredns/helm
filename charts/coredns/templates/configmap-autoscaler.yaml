@@ -18,11 +18,15 @@ metadata:
     {{- if .Values.customLabels }}
     {{- toYaml .Values.customLabels | nindent 4 }}
     {{- end }}
-{{ if or .Values.autoscaler.configmap.annotations .Values.customAnnotations }}
+  {{- if or .Values.autoscaler.configmap.annotations .Values.customAnnotations }}
   annotations:
-{{ toYaml .Values.customAnnotations | indent 4 }}
-{{- toYaml .Values.autoscaler.configmap.annotations | nindent 4 }}
-{{- end }}
+    {{- if .Values.customAnnotations }}
+    {{- toYaml .Values.customAnnotations | nindent 4 }}
+    {{- end }}
+    {{- if .Values.autoscaler.configmap.annotations -}}
+    {{ toYaml .Values.autoscaler.configmap.annotations | nindent 4 }}
+    {{- end }}
+  {{- end }}
 data:
   # When cluster is using large nodes(with more cores), "coresPerReplica" should dominate.
   # If using small nodes, "nodesPerReplica" should dominate.
