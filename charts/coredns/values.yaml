@@ -39,7 +39,7 @@ resources:
 #       targetAverageUtilization: 60
 
 rollingUpdate:
-  maxUnavailable: 1
+  maxUnavailable: 25%
   maxSurge: 25%
 
 # Under heavy load it takes more that standard time to remove Pod endpoint from a cluster.
@@ -126,7 +126,7 @@ servers:
   - name: forward
     parameters: . /etc/resolv.conf
   - name: cache
-    parameters: 30
+    parameters: "30"
   - name: loop
   - name: reload
   - name: loadbalance

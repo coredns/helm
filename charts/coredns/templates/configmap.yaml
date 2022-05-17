@@ -31,13 +31,13 @@ data:
     {{- if .port }}:{{ .port }} {{ end -}}
     {
       {{- range .plugins }}
-        {{ .name }}{{ if .parameters }} {{ .parameters }}{{ end }}{{ if .configBlock }} {
+        {{ .name }}{{ if .parameters }} {{ tpl (.parameters) $ }}{{ end }}{{ if .configBlock }} {
 {{ .configBlock | indent 12 }}
         }{{ end }}
       {{- end }}
     }
     {{ end }}
   {{- range .Values.zoneFiles }}
-  {{ .filename }}: {{ toYaml .contents | indent 4 }}
+  {{ .filename }}: {{ tpl (toYaml .contents | indent 4) $ }}
   {{- end }}
 {{- end }}
