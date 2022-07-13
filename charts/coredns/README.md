@@ -154,7 +154,7 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 $ helm install coredns coredns/coredns -f values.yaml
 ```
 
-> **Tip**: You can use the default [values.yaml](values.yaml)
+> **Tip**: You can use the default [values.yaml](/charts/coredns/values.yaml)
 
 
 ## Caveats
