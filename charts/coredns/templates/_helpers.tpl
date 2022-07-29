@@ -145,6 +145,16 @@ Generate the list of ports automatically from the server definitions
 
         {{/* Write the dict back into the outer dict */}}
         {{- $ports := set $ports $port $innerdict -}}
+
+        {{/* Fetch port from the configuration if the prometheus section exists */}}
+        {{- range .plugins -}}
+            {{- if eq .name "prometheus" -}}
+                {{- $prometheus_addr := toString .parameters -}}
+                {{- $prometheus_addr_list := regexSplit ":" $prometheus_addr -1 -}}
+                {{- $prometheus_port := index $prometheus_addr_list 1 -}}
+                {{- $ports := set $ports $prometheus_port (dict "istcp" true "isudp" false) -}}
+            {{- end -}}
+        {{- end -}}
     {{- end -}}
 
     {{/* Write out the ports according to the info collected above */}}
