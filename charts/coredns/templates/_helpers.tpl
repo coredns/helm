@@ -19,6 +19,14 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 {{- end -}}
 
+
+{{/*
+Allow k8s-app label to be overridden
+*/}}
+{{- define "coredns.k8sapplabel" -}}
+{{- default .Chart.Name .Values.k8sAppLabelOverride | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
 {{/*
 Generate the list of ports automatically from the server definitions
 */}}
