@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
     helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     {{- if .Values.isClusterService }}
-    k8s-app: {{ .Chart.Name | quote }}
+    k8s-app: {{ template "coredns.k8sapplabel" . }}
     kubernetes.io/cluster-service: "true"
     kubernetes.io/name: "CoreDNS"
     {{- end }}
@@ -30,7 +30,7 @@ spec:
   selector:
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
     {{- if .Values.isClusterService }}
-    k8s-app: {{ .Chart.Name | quote }}
+    k8s-app: {{ template "coredns.k8sapplabel" . }}
     {{- end }}
     app.kubernetes.io/name: {{ template "coredns.name" . }}
   {{- if .Values.service.clusterIP }}

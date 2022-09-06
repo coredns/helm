@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
     helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     {{- if .Values.isClusterService }}
-    k8s-app: {{ .Chart.Name }}-autoscaler
+    k8s-app: {{ template "coredns.k8sapplabel" . }}-autoscaler
     kubernetes.io/cluster-service: "true"
     kubernetes.io/name: "CoreDNS"
     {{- end }}
