@@ -228,6 +228,10 @@ extraSecrets: []
 # - name: some-fancy-secret
 #   mountPath: /etc/wherever
 
+# To support legacy deployments using CoreDNS with the "k8s-app: kube-dns" label selectors.
+# See https://github.com/coredns/helm/blob/master/charts/coredns/README.md#adopting-existing-coredns-resources
+# k8sAppLabelOverride: "kube-dns"
+
 # Custom labels to apply to Deployment, Pod, Configmap, Service, ServiceMonitor. Including autoscaler if enabled.
 customLabels: {}
 
