@@ -186,3 +186,60 @@ the autoscaler deployment.
 By setting `hpa.enabled = true` a [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
 is enabled for Coredns deployment. This can scale number of replicas based on meitrics
 like CpuUtilization, MemoryUtilization or Custom ones.
+
+## Adopting existing CoreDNS resources
+
+If you do not want to delete the existing CoreDNS resources in your cluster, you can adopt the resources into a release as of Helm 3.2.0. 
+
+You will also need to annotate and label your existing resources to allow Helm to assume control of them. See: https://github.com/helm/helm/pull/7649
+
+```
+annotations:
+  meta.helm.sh/release-name: your-release-name
+  meta.helm.sh/release-namespace: your-release-namespace
+label:
+  app.kubernetes.io/managed-by: Helm
+```
+
+Once you have annotated and labeled all the resources this chart specifies, you may need to locally template the chart and compare against existing manifest to ensure there are no changes/diffs.s If
+you have been careful this should not diff and leave all the resources unmodified and now under management of helm.
+
+Some values to investigate to help adopt your existing manifests to the Helm release are:
+- k8sAppLabelOverride
+- service.name
+- customLabels
+
+In some cases, you will need to orphan delete your existing deployment since selector labels are immutable.
+
+```
+kubectl delete deployment coredns --cascade=orphan
+```
+
+This will delete the deployment and leave the replicaset to ensure no downtime in the cluster. You will need to manually delete the replicaset AFTER Helm has released a new deployment.
+
+Here is an example script to modify the annotations and labels of existing resources:
+
+WARNING: Substitute YOUR_HELM_RELEASE_NAME_HERE with the name of your helm release.
+```
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+for kind in config service serviceAccount; do
+    echo "setting annotations and labels on $kind/coredns"
+    kubectl -n kube-system annotate --overwrite $kind coredns meta.helm.sh/release-name=YOUR_HELM_RELEASE_NAME_HERE
+    kubectl -n kube-system annotate --overwrite $kind coredns meta.helm.sh/release-namespace=kube-system
+    kubectl -n kube-system label --overwrite $kind coredns app.kubernetes.io/managed-by=Helm
+done
+```
+
+NOTE: Sometimes, previous deployments of kube-dns that have been migrated to CoreDNS still use kube-dns for the service name as well.
+
+```
+echo "setting annotations and labels on service/kube-dns"
+kubectl -n kube-system annotate --overwrite service kube-dns meta.helm.sh/release-name=YOUR_HELM_RELEASE_NAME_HERE
+kubectl -n kube-system annotate --overwrite service kube-dns meta.helm.sh/release-namespace=kube-system
+kubectl -n kube-system label --overwrite service kube-dns app.kubernetes.io/managed-by=Helm
+```      
+
+
