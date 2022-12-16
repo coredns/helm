@@ -90,6 +90,10 @@ spec:
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
       {{- end }}
+      {{- if .Values.initContainers }}
+      initContainers:
+{{- toYaml .Values.initContainers | nindent 8}}
+      {{- end }}
       containers:
       - name: "coredns"
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

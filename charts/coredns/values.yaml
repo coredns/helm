@@ -42,6 +42,12 @@ rollingUpdate:
   maxUnavailable: 1
   maxSurge: 25%
 
+## Optionally, add init containers to run before the main CoreDNS container starts up.
+# initContainers:
+#   - name: helloworld
+#     image: "busybox"
+#     command: ["bash", "-c", "Hello world"]
+
 # Under heavy load it takes more that standard time to remove Pod endpoint from a cluster.
 # This will delay termination of our pod by `preStopSleep`. To make sure kube-proxy has
 # enough time to catch up.
