@@ -199,6 +199,12 @@ topologySpreadConstraints: []
 # Ref: https://kubernetes.io/docs/user-guide/node-selection/
 nodeSelector: {}
 
+# Configure pod DNS policy and config.
+# dnsPolicy: None
+# dnsConfig:
+#   nameservers:
+#     - 8.8.8.8
+
 # expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#toleration-v1-core
 # for example:
 #   tolerations:

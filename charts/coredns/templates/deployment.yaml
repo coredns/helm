@@ -144,6 +144,13 @@ spec:
         securityContext:
 {{- toYaml .Values.securityContext | nindent 10 }}
 {{- end }}
+{{- if .Values.dnsPolicy }}
+      dnsPolicy: {{ .Values.dnsPolicy }}
+{{- end }}
+{{- if .Values.dnsConfig }}
+      dnsConfig:
+{{ toYaml .Values.dnsConfig | nindent 8 }}
+{{- end }}
       volumes:
         - name: config-volume
           configMap:
