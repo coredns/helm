@@ -259,6 +259,17 @@ extraSecrets: []
 #   mountPath: /etc/wherever
 #   defaultMode: 440
 
+# optional array of environment variables for coredns container
+# possible usecase: provides username and password for etcd user authentications
+env: []
+# - name: WHATEVER_ENV
+#   value: whatever
+# - name: SOME_SECRET_ENV
+#   valueFrom:
+#     secretKeyRef:
+#       name: some-secret-name
+#       key: secret-key
+
 # To support legacy deployments using CoreDNS with the "k8s-app: kube-dns" label selectors.
 # See https://github.com/coredns/helm/blob/master/charts/coredns/README.md#adopting-existing-coredns-resources
 # k8sAppLabelOverride: "kube-dns"
