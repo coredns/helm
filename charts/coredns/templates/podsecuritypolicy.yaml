@@ -24,8 +24,8 @@ spec:
   allowPrivilegeEscalation: false
   # Add back CAP_NET_BIND_SERVICE so that coredns can run on port 53
   allowedCapabilities:
-  - CAP_NET_BIND_SERVICE
-    # Allow core volume types.
+    - NET_BIND_SERVICE
+  # Allow core volume types.
   volumes:
     - 'configMap'
     - 'emptyDir'
