@@ -13,7 +13,7 @@ image:
   ##
   pullSecrets: []
   # pullSecrets:
-  #   - myRegistryKeySecretName
+  #   - name: myRegistryKeySecretName
 
 replicaCount: 1
 
@@ -308,7 +308,7 @@ autoscaler:
     ##
     pullSecrets: []
     # pullSecrets:
-    #   - myRegistryKeySecretName
+    #   - name: myRegistryKeySecretName
 
   # Optional priority class to be used for the autoscaler pods. priorityClassName used if not set.
   priorityClassName: ""
