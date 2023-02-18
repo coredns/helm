@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ template "coredns.fullname" . }}
+  name: {{ default (include "coredns.fullname" .) .Values.clusterrole.name }}
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
@@ -13,6 +13,15 @@ metadata:
     kubernetes.io/name: "CoreDNS"
     {{- end }}
     app.kubernetes.io/name: {{ template "coredns.name" . }}
+  {{- if or .Values.clusterrole.annotations .Values.customAnnotations }}
+  annotations:
+    {{- if .Values.customAnnotations }}
+    {{- toYaml .Values.customAnnotations | nindent 4 }}
+    {{- end }}
+    {{- if .Values.clusterrole.annotations }}
+    {{- toYaml .Values.clusterrole.annotations | nindent 4 }}
+    {{- end }}
+  {{- end }}
 rules:
 - apiGroups:
   - ""

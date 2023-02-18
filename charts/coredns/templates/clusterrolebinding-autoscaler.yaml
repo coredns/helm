@@ -3,7 +3,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{ template "coredns.fullname" . }}-autoscaler
+  name: {{ default (include "coredns.fullname" .) .Values.clusterrolebinding-autoscaler.name-prefix }}-autoscaler
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
@@ -24,9 +24,9 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ template "coredns.fullname" . }}-autoscaler
+  name: {{ default (include "coredns.fullname" .) .Values.clusterrole-autoscaler.name-prefix }}-autoscaler
 subjects:
 - kind: ServiceAccount
-  name: {{ template "coredns.fullname" . }}-autoscaler
+  name: {{ default (include "coredns.fullname" .) .Values.serviceaccount-autoscaler.name-prefix }}-autoscaler
   namespace: {{ .Release.Namespace }}
 {{- end }}

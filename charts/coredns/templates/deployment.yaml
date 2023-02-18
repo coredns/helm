@@ -147,7 +147,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: {{ template "coredns.fullname" . }}
+            name: {{ default (include "coredns.fullname" .) .Values.configmap.name }}
             items:
             - key: Corefile
               path: Corefile
