@@ -359,8 +359,9 @@ clusterrolebinding:
 #hpa:
 #  name: ""
 
-pdb:
-  name: ""
+# see podDisruptionBudget section above
+#pdb:
+#  name: ""
 
 servicemonitor:
   name: ""
