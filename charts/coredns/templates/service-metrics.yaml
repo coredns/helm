@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ default (include "coredns.fullname" .) .Values.service-metrics.name-prefix }}-metrics
+  name: {{ default (include "coredns.fullname" .) .Values.servicemetrics.namePrefix }}-metrics
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}

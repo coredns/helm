@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ default (include "coredns.fullname" .) .Values.autoscaler.name-prefix }}-autoscaler
+  name: {{ default (include "coredns.fullname" .) .Values.autoscaler.namePrefix }}-autoscaler
   namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
@@ -52,7 +52,7 @@ spec:
         scheduler.alpha.kubernetes.io/tolerations: '[{"key":"CriticalAddonsOnly", "operator":"Exists"}]'
         {{- end }}
     spec:
-      serviceAccountName: {{ default (include "coredns.fullname" .) .Values.serviceaccount-autoscaler.name-prefix }}-autoscaler
+      serviceAccountName: {{ default (include "coredns.fullname" .) .Values.serviceaccountAutoscaler.namePrefix }}-autoscaler
       {{- $priorityClassName := default .Values.priorityClassName .Values.autoscaler.priorityClassName }}
       {{- if $priorityClassName }}
       priorityClassName: {{ $priorityClassName | quote }}
@@ -90,7 +90,7 @@ spec:
         command:
           - /cluster-proportional-autoscaler
           - --namespace={{ .Release.Namespace }}
-          - --configmap={{ default (include "coredns.fullname" .) .Values.configmap-autoscaler.name-prefix }}-autoscaler
+          - --configmap={{ default (include "coredns.fullname" .) .Values.configmapAutoscaler.namePrefix }}-autoscaler
           - --target=Deployment/{{ default (include "coredns.fullname" .) .Values.deployment.name }}
           - --logtostderr=true
           - --v=2

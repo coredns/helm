@@ -262,7 +262,7 @@ hpa:
 # See https://github.com/kubernetes-incubator/cluster-proportional-autoscaler
 autoscaler:
   # deployment and all other autoscaler related components will be appended with "-autoscaler"
-  name-prefix: ""
+  namePrefix: ""
   # Enabled the cluster-proportional-autoscaler
   enabled: false
 
@@ -370,20 +370,20 @@ servicemonitor:
 #deployment-autoscaler:
 #  name: ""
 
-configmap-autoscaler:
-  name-prefix: ""
+configmapAutoscaler:
+  namePrefix: ""
 
-serviceaccount-autoscaler:
-  name-prefix: ""
+serviceaccountAutoscaler:
+  namePrefix: ""
 
-clusterrole-autoscaler:
-  name-prefix: ""
+clusterroleAutoscaler:
+  namePrefix: ""
 
-clusterrolebinding-autoscaler:
-  name-prefix: ""
+clusterrolebindingAutoscaler:
+  namePrefix: ""
 
-serviceaccount-autoscaler:
-  name-prefix: ""
+serviceaccountAutoscaler:
+  namePrefix: ""
 
-service-metrics:
-  name-prefix: ""
+servicemetrics:
+  namePrefix: ""

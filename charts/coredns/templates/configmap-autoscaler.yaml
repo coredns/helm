@@ -3,7 +3,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: {{ default (include "coredns.fullname" .) .Values.configmap-autoscaler.name-prefix }}-autoscaler
+  name: {{ default (include "coredns.fullname" .) .Values.configmapAutoscaler.namePrefix }}-autoscaler
   namespace:  {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
