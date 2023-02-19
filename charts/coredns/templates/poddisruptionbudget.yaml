@@ -2,7 +2,7 @@
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: {{ default (include "coredns.fullname" .) .Values.podDisruptionBudget.name }}
+  name: {{ default (include "coredns.fullname" .) .Values.pdb.name }}
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
