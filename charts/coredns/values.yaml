@@ -355,20 +355,13 @@ clusterrolebinding:
   annotations: {}
 
 # additional changes to have common naming schema across all resources
-# see hpa section above
-#hpa:
-#  name: ""
-
 pdb:
   name: ""
 
 servicemonitor:
   name: ""
 
-# see autoscaler section  above
-#deployment-autoscaler:
-#  name: ""
-
+# all autoscaler related components will be appended with "-autoscaler"
 configmapAutoscaler:
   namePrefix: ""
 
