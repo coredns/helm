@@ -68,9 +68,11 @@ prometheus:
 
 service:
 # clusterIP: ""
+# clusterIPs: []
 # loadBalancerIP: ""
 # externalIPs: []
 # externalTrafficPolicy: ""
+# ipFamilyPolicy: ""
   # The name of the Service
   # If not set, a name is generated using the fullname template
   name: ""
