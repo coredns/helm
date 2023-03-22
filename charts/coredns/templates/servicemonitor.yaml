@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ template "coredns.fullname" . }}
+  name: {{ default (include "coredns.fullname" .) .Values.servicemonitor.name }}
   {{- if .Values.prometheus.monitor.namespace }}
   namespace: {{ .Values.prometheus.monitor.namespace }}
   {{- end }}

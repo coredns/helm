@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "coredns.fullname" . }}
+  name: {{ default (include "coredns.fullname" .) .Values.configmap.name }}
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
@@ -17,10 +17,15 @@ metadata:
 {{- if .Values.customLabels }}
 {{ toYaml .Values.customLabels | indent 4 }}
 {{- end }}
-{{- with .Values.customAnnotations }}
+  {{- if or .Values.configmap.annotations .Values.customAnnotations }}
   annotations:
-{{- toYaml . | nindent 4 }}
-{{- end }}
+    {{- if .Values.customAnnotations }}
+    {{- toYaml .Values.customAnnotations | nindent 4 }}
+    {{- end }}
+    {{- if .Values.configmap.annotations }}
+    {{- toYaml .Values.configmap.annotations | nindent 4 }}
+    {{- end }}
+  {{- end }}
 data:
   Corefile: |-
     {{- range $name, $conf := .Values.extraConfig }}

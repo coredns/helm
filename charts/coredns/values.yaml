@@ -256,10 +256,13 @@ hpa:
   minReplicas: 1
   maxReplicas: 2
   metrics: []
+  name: ""
 
 ## Configue a cluster-proportional-autoscaler for coredns
 # See https://github.com/kubernetes-incubator/cluster-proportional-autoscaler
 autoscaler:
+  # deployment and all other autoscaler related components will be appended with "-autoscaler"
+  namePrefix: ""
   # Enabled the cluster-proportional-autoscaler
   enabled: false
 
@@ -334,3 +337,45 @@ deployment:
   name: ""
   ## Annotations for the coredns deployment
   annotations: {}
+
+# additional values to mimic Amazon EKS CoreDNS implementation
+configmap:
+  name: ""
+  ## Annotations for the coredns deployment
+  annotations: {}
+
+clusterrole:
+  name: ""
+  ## Annotations for the coredns deployment
+  annotations: {}
+
+clusterrolebinding:
+  name: ""
+  ## Annotations for the coredns deployment
+  annotations: {}
+
+# additional changes to have common naming schema across all resources
+pdb:
+  name: ""
+
+servicemonitor:
+  name: ""
+
+# all autoscaler related components will be appended with "-autoscaler"
+configmapAutoscaler:
+  namePrefix: ""
+
+serviceaccountAutoscaler:
+  namePrefix: ""
+
+clusterroleAutoscaler:
+  namePrefix: ""
+
+clusterrolebindingAutoscaler:
+  namePrefix: ""
+
+serviceaccountAutoscaler:
+  namePrefix: ""
+
+servicemetrics:
+  namePrefix: ""

@@ -3,7 +3,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ template "coredns.fullname" . }}-autoscaler
+  name: {{ default (include "coredns.fullname" .) .Values.clusterroleAutoscaler.namePrefix }}-autoscaler
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
