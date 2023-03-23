@@ -282,7 +282,7 @@ autoscaler:
   #   - --nodelabels=topology.kubernetes.io/zone=us-east-1a
 
   image:
-    repository: k8s.gcr.io/cpa/cluster-proportional-autoscaler
+    repository: registry.k8s.io/cpa/cluster-proportional-autoscaler
     tag: "1.8.5"
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
