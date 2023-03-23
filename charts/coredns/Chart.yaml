@@ -18,4 +18,5 @@ engine: gotpl
 type: application
 annotations:
   artifacthub.io/changes: |
-    - Initial helm chart changelog
+    - kind: changed
+      description: Fetch cpa from registry.k8s.io
