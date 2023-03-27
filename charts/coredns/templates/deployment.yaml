@@ -95,6 +95,17 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args: [ "-conf", "/etc/coredns/Corefile" ]
+        {{- if .Values.deployment.env }}
+        env:
+          {{- range $key, $value := .Values.deployment.env }}
+          - name: {{ $key }}
+            {{- if kindIs "map" $value }}
+{{ toYaml $value | indent 12 }}
+            {{- else }}
+            value: {{ $value | quote }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
         volumeMounts:
         - name: config-volume
           mountPath: /etc/coredns

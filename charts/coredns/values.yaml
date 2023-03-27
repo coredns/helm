@@ -335,3 +335,12 @@ deployment:
   name: ""
   ## Annotations for the coredns deployment
   annotations: {}
+  ## Environment variables for the coredns deployment
+  #  env:
+  #    SIMPLE_VAR: value
+  #    COMPLEX_VAR:
+  #      valueFrom:
+  #        secretKeyRef:
+  #          name: my-secret
+  #          key: my-key
+  env: {}
