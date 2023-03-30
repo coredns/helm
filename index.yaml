@@ -3,6 +3,37 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Use chart appVersion as default image tag
+        - kind: added
+          description: Add HagaiBarel as chart maintainer
+        - kind: fixed
+          description: Fix reference link to values file in the readme
+    apiVersion: v2
+    appVersion: 1.9.4
+    created: "2023-03-30T10:52:21.243564659Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: b496e7c1cd8e1fa706c9d934705f6875d15887e08b2578abaae4d686ac6e3431
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: HagaiBarel
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.20.0/coredns-1.20.0.tgz
+    version: 1.20.0
+  - annotations:
+      artifacthub.io/changes: |
         - Initial helm chart changelog
     apiVersion: v2
     appVersion: 1.9.4
@@ -676,4 +707,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-03-23T16:50:54.531225948Z"
+generated: "2023-03-30T10:52:21.243798185Z"
