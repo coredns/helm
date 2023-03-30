@@ -4,6 +4,7 @@
 
 - Manuel Rüger <https://github.com/mrueg>
 - Adam Hamsik <https://github.com/haad>
+- Hagai Barel <https://github.com/hagaibarel>
 
 ## Original Helm Chart Contributors
 
