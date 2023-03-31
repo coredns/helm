@@ -11,6 +11,37 @@ entries:
           description: Fix reference link to values file in the readme
     apiVersion: v2
     appVersion: 1.9.4
+    created: "2023-03-31T16:10:33.491903077Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 027e9d69f8bba52dfabe047ddd25c1e31be16d27849c4df99c3a44ba7df83fcb
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: HagaiBarel
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.20.1/coredns-1.20.1.tgz
+    version: 1.20.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Use chart appVersion as default image tag
+        - kind: added
+          description: Add HagaiBarel as chart maintainer
+        - kind: fixed
+          description: Fix reference link to values file in the readme
+    apiVersion: v2
+    appVersion: 1.9.4
     created: "2023-03-30T10:52:21.243564659Z"
     description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
       DNS Services
@@ -707,4 +738,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-03-30T10:52:21.243798185Z"
+generated: "2023-03-31T16:10:33.492335579Z"
