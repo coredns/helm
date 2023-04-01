@@ -28,7 +28,7 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
-  {{- if not .Values.autoscaler.enabled }}
+  {{- if and (not .Values.autoscaler.enabled) (not .Values.hpa.enabled) }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   strategy:
