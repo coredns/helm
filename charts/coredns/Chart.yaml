@@ -19,5 +19,12 @@ engine: gotpl
 type: application
 annotations:
   artifacthub.io/changes: |
+<<<<<<< HEAD
     - kind: changed
       description: Bump CoreDNS version to 1.10.1
+=======
+    - kind: fixed
+      description: Fix HPA configuration
+    - kind: fixed
+      description: Fix assignment of NET_BIND_SERVICE capability, enable use of pullSecrets with Deployment
+>>>>>>> 7ff7be7 (Added changelog item)
