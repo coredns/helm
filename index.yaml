@@ -3,6 +3,33 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Bump CoreDNS version to 1.10.1
+    apiVersion: v2
+    appVersion: 1.10.1
+    created: "2023-04-06T12:57:00.916318055Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 149676283c24c05bbc8d88fc5890b8a38afe72bf84df7dc6f0873c971e7ce1e3
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: HagaiBarel
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.21.0/coredns-1.21.0.tgz
+    version: 1.21.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Fix HPA configuration
     apiVersion: v2
@@ -765,4 +792,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-04-01T13:28:55.643897708Z"
+generated: "2023-04-06T12:57:00.916541062Z"
