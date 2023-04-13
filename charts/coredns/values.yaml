@@ -11,8 +11,9 @@ image:
   ## Secrets must be manually created in the namespace.
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
   ##
+  pullSecrets: []
   # pullSecrets:
-  #   - myRegistryKeySecretName
+  #   - name: myRegistryKeySecretName
 
 replicaCount: 1
 
@@ -84,6 +85,13 @@ isClusterService: true
 
 # Optional priority class to be used for the coredns pods. Used for autoscaler if autoscaler.priorityClassName not set.
 priorityClassName: ""
+
+# Configure SecurityContext for Pod.
+# Ensure that required linux capability to bind port number below 1024 is assigned (`CAP_NET_BIND_SERVICE`).
+securityContext:
+  capabilities:
+    add:
+      - NET_BIND_SERVICE
 
 # Default zone is what Kubernetes recommends:
 # https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/#coredns-configmap-options
@@ -298,8 +306,9 @@ autoscaler:
     ## Secrets must be manually created in the namespace.
     ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
     ##
+    pullSecrets: []
     # pullSecrets:
-    #   - myRegistryKeySecretName
+    #   - name: myRegistryKeySecretName
 
   # Optional priority class to be used for the autoscaler pods. priorityClassName used if not set.
   priorityClassName: ""
