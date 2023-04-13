@@ -3,6 +3,35 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix assignment of NET_BIND_SERVICE capability
+        - kind: fixed
+          description: Enable use of pullSecrets with Deployment
+    apiVersion: v2
+    appVersion: 1.10.1
+    created: "2023-04-13T06:30:23.108431011Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 620062dcd6106f07f90e29faa740016c694b6f63784947e95e02128e8bf93995
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: HagaiBarel
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.22.0/coredns-1.22.0.tgz
+    version: 1.22.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Bump CoreDNS version to 1.10.1
     apiVersion: v2
@@ -792,4 +821,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-04-06T12:57:00.916541062Z"
+generated: "2023-04-13T06:30:23.108699215Z"
