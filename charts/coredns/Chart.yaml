@@ -19,6 +19,8 @@ engine: gotpl
 type: application
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: Added podSecurityContext
     - kind: fixed
       description: Fix assignment of NET_BIND_SERVICE capability
     - kind: fixed
