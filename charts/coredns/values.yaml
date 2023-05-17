@@ -86,6 +86,9 @@ isClusterService: true
 # Optional priority class to be used for the coredns pods. Used for autoscaler if autoscaler.priorityClassName not set.
 priorityClassName: ""
 
+# Configure the pod level securityContext.
+podSecurityContext: {}
+
 # Configure SecurityContext for Pod.
 # Ensure that required linux capability to bind port number below 1024 is assigned (`CAP_NET_BIND_SERVICE`).
 securityContext:
