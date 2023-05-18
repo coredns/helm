@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.22.1
+version: 1.23.0
 appVersion: 1.10.1
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -21,7 +21,3 @@ annotations:
   artifacthub.io/changes: |
     - kind: added
       description: Added podSecurityContext
-    - kind: fixed
-      description: Fix assignment of NET_BIND_SERVICE capability
-    - kind: fixed
-      description: Enable use of pullSecrets with Deployment
