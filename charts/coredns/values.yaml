@@ -296,6 +296,9 @@ autoscaler:
   # If true does not allow single points of failure to form
   preventSinglePointFailure: true
 
+  # Annotations for the coredns proportional autoscaler pods
+  podAnnotations: {}
+
   ## Optionally specify some extra flags to pass to cluster-proprtional-autoscaler.
   ## Useful for e.g. the nodelabels flag.
   # customFlags:
