@@ -50,6 +50,9 @@ spec:
         {{- if .Values.isClusterService }}
         scheduler.alpha.kubernetes.io/tolerations: '[{"key":"CriticalAddonsOnly", "operator":"Exists"}]'
         {{- end }}
+        {{- with .Values.autoscaler.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       serviceAccountName: {{ template "coredns.fullname" . }}-autoscaler
       {{- $priorityClassName := default .Values.priorityClassName .Values.autoscaler.priorityClassName }}
