@@ -19,5 +19,5 @@ engine: gotpl
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Added autoscaler podAnnotations
+    - kind: Refacotring
+      description: Moved the labels from the the resource to a single helpers.tpl for better readability
