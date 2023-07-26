@@ -19,5 +19,5 @@ engine: gotpl
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: Refacotring
+    - kind: Refactoring
       description: Moved the labels from the the resource to a single helpers.tpl for better readability
