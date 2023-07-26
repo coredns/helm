@@ -5,18 +5,7 @@ kind: Deployment
 metadata:
   name: {{ template "coredns.fullname" . }}-autoscaler
   namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
-    app.kubernetes.io/instance: {{ .Release.Name | quote }}
-    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
-    {{- if .Values.isClusterService }}
-    {{- if not (hasKey .Values.customLabels "k8s-app")}}
-    k8s-app: {{ template "coredns.k8sapplabel" . }}-autoscaler
-    {{- end }}
-    kubernetes.io/cluster-service: "true"
-    kubernetes.io/name: "CoreDNS"
-    {{- end }}
-    app.kubernetes.io/name: {{ template "coredns.name" . }}-autoscaler
+  labels: {{- include "coredns.labels.autoscaler" . | nindent 4 }}
 {{- if .Values.customLabels }}
 {{ toYaml .Values.customLabels | indent 4 }}
 {{- end }}

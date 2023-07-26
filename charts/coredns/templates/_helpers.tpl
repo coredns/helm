@@ -19,6 +19,35 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 {{- end -}}
 
+{{/*
+Common labels
+*/}}
+{{- define "coredns.labels" -}}
+app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+app.kubernetes.io/instance: {{ .Release.Name | quote }}
+helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+{{- if .Values.isClusterService }}
+k8s-app: {{ template "coredns.k8sapplabel" . }}
+kubernetes.io/cluster-service: "true"
+kubernetes.io/name: "CoreDNS"
+{{- end }}
+app.kubernetes.io/name: {{ template "coredns.name" . }}
+{{- end -}}
+
+{{/*
+Common labels with autoscaler
+*/}}
+{{- define "coredns.labels.autoscaler" -}}
+app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+app.kubernetes.io/instance: {{ .Release.Name | quote }}
+helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+{{- if .Values.isClusterService }}
+k8s-app: {{ template "coredns.k8sapplabel" . }}-autoscaler
+kubernetes.io/cluster-service: "true"
+kubernetes.io/name: "CoreDNS"
+{{- end }}
+app.kubernetes.io/name: {{ template "coredns.name" . }}-autoscaler
+{{- end -}}
 
 {{/*
 Allow k8s-app label to be overridden
