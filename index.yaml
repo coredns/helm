@@ -3,6 +3,33 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: Refactoring
+          description: Moved the labels from the the resource to a single helpers.tpl for better readability
+    apiVersion: v2
+    appVersion: 1.10.1
+    created: "2023-07-27T07:25:38.007046112Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: a4d08831f97548b776c6537ba62c335d263ab0657bcb103535fade7bcc274b83
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: HagaiBarel
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.24.2/coredns-1.24.2.tgz
+    version: 1.24.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Added autoscaler podAnnotations
     apiVersion: v2
@@ -902,4 +929,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-06-10T04:20:40.065609227Z"
+generated: "2023-07-27T07:25:38.00736422Z"
