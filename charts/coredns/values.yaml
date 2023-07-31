@@ -283,24 +283,23 @@ autoscaler:
   # Enabled the cluster-proportional-autoscaler
   enabled: false
 
-  # ladder:
-  #   coresToReplicas:
-  #     - [ 1, 1 ]
-  #     - [ 64, 3 ]
-  #     - [ 512, 5 ]
-  #     - [ 1024, 7 ]
-  #     - [ 2048, 10 ]
-  #     - [ 4096, 15 ]
-  #   nodesToReplicas:
-  #     - [ 1, 1 ]
-  #     - [ 2, 2 ]
-  # linear:
-  #   coresPerReplica: 2
-  #   nodesPerReplica: 1
-  #   min: 1
-  #   max: 100
-  #   preventSinglePointFailure: true
-  #   includeUnschedulableNodes: true
+  options:
+  alsoLogToStdErr:
+  logBacktraceAt:
+  logDir:
+  #  --v=0: log level for V logs
+  logLevel:
+  # Defaulting to true limits use of ephemeral storage
+  logToStdErr: true
+  maxSyncFailures:
+  namespace:
+  nodeLabels: {}
+  #  label1: value1
+  #  label2: value2
+  pollPeriodSeconds:
+  stdErrThreshold:
+  target:
+  vmodule:
 
   # Annotations for the coredns proportional autoscaler pods
   podAnnotations: {}
@@ -346,10 +345,26 @@ autoscaler:
 
   # Options for autoscaler configmap
   config:
-    ## Annotations for the coredns-autoscaler configmap
-    # i.e. strategy.spinnaker.io/versioned: "false" to ensure configmap isn't renamed
-    annotations: {}
 
+    # ladder:
+    #   coresToReplicas:
+    #     - [ 1, 1 ]
+    #     - [ 64, 3 ]
+    #     - [ 512, 5 ]
+    #     - [ 1024, 7 ]
+    #     - [ 2048, 10 ]
+    #     - [ 4096, 15 ]
+    #   nodesToReplicas:
+    #     - [ 1, 1 ]
+    #     - [ 2, 2 ]
+
+    # linear:
+    #   coresPerReplica: 2
+    #   nodesPerReplica: 1
+    #   min: 1
+    #   max: 100
+    #   preventSinglePointFailure: true
+    #   includeUnschedulableNodes: true
 
 deployment:
   enabled: true
