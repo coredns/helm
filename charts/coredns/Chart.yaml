@@ -19,8 +19,8 @@ engine: gotpl
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: Refactoring
-      description: Moved the labels from the the resource to a single helpers.tpl for better readability
+    - kind: Breaking Change
+      description: Using cluster-proportional-autoscaler as dependency 
 dependencies:
   - name: cluster-proportional-autoscaler
     alias: autoscaler
