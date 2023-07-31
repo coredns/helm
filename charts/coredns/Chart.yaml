@@ -20,7 +20,7 @@ type: application
 annotations:
   artifacthub.io/changes: |
     - kind: Breaking Change
-      description: Using cluster-proportional-autoscaler as dependency 
+      description: Using cluster-proportional-autoscaler as dependency now
 dependencies:
   - name: cluster-proportional-autoscaler
     alias: autoscaler
