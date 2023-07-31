@@ -283,18 +283,24 @@ autoscaler:
   # Enabled the cluster-proportional-autoscaler
   enabled: false
 
-  # Number of cores in the cluster per coredns replica
-  coresPerReplica: 256
-  # Number of nodes in the cluster per coredns replica
-  nodesPerReplica: 16
-  # Min size of replicaCount
-  min: 0
-  # Max size of replicaCount (default of 0 is no max)
-  max: 0
-  # Whether to include unschedulable nodes in the nodes/cores calculations - this requires version 1.8.0+ of the autoscaler
-  includeUnschedulableNodes: false
-  # If true does not allow single points of failure to form
-  preventSinglePointFailure: true
+  # ladder:
+  #   coresToReplicas:
+  #     - [ 1, 1 ]
+  #     - [ 64, 3 ]
+  #     - [ 512, 5 ]
+  #     - [ 1024, 7 ]
+  #     - [ 2048, 10 ]
+  #     - [ 4096, 15 ]
+  #   nodesToReplicas:
+  #     - [ 1, 1 ]
+  #     - [ 2, 2 ]
+  # linear:
+  #   coresPerReplica: 2
+  #   nodesPerReplica: 1
+  #   min: 1
+  #   max: 100
+  #   preventSinglePointFailure: true
+  #   includeUnschedulableNodes: true
 
   # Annotations for the coredns proportional autoscaler pods
   podAnnotations: {}
@@ -312,8 +318,8 @@ autoscaler:
     ## Secrets must be manually created in the namespace.
     ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
     ##
-    pullSecrets: []
-    # pullSecrets:
+  imagePullSecrets: []
+    # imagePullSecrets:
     #   - name: myRegistryKeySecretName
 
   # Optional priority class to be used for the autoscaler pods. priorityClassName used if not set.
@@ -339,19 +345,11 @@ autoscaler:
       memory: "10Mi"
 
   # Options for autoscaler configmap
-  configmap:
+  config:
     ## Annotations for the coredns-autoscaler configmap
     # i.e. strategy.spinnaker.io/versioned: "false" to ensure configmap isn't renamed
     annotations: {}
 
-  # Enables the livenessProbe for cluster-proportional-autoscaler - this requires version 1.8.0+ of the autoscaler
-  livenessProbe:
-    enabled: true
-    initialDelaySeconds: 10
-    periodSeconds: 5
-    timeoutSeconds: 5
-    failureThreshold: 3
-    successThreshold: 1
 
 deployment:
   enabled: true
