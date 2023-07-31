@@ -2,5 +2,5 @@ dependencies:
 - name: cluster-proportional-autoscaler
   repository: https://kubernetes-sigs.github.io/cluster-proportional-autoscaler
   version: 1.1.0
-digest: sha256:b5babc233ff097cbe9378a8b0226cfc6291dbf7e10e48a318d7a4faf32148e58
-generated: "2023-07-31T18:45:19.663017597+05:30"
+digest: sha256:08d4591bca686a5ed24f004cedba6f203066904dc65589bbc96b8d42afd6d741
+generated: "2023-07-31T20:11:45.731908383+05:30"
