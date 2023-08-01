@@ -28,4 +28,3 @@ dependencies:
     version: 1.1.0
     repository: https://kubernetes-sigs.github.io/cluster-proportional-autoscaler
     condition: autoscaler.enabled
-
