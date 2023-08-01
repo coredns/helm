@@ -19,5 +19,5 @@ engine: gotpl
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: Refactor
-      description: Update the github action.
+    - kind: Added
+      description: Added a job to the github action for repo addition.
