@@ -16,6 +16,11 @@ jobs:
         with:
           version: v3.11.2
 
+      - name: Add Helm repo
+        run: |
+          helm repo add cpa https://kubernetes-sigs.github.io/cluster-proportional-autoscaler
+          helm repo update
+
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
