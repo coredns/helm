@@ -63,6 +63,9 @@ service:
   # If not set, a name is generated using the fullname template
   name: ""
   annotations: {}
+# Allow any sort of custom options in the service object
+# customOptions:
+#   allocateLoadBalancerNodePorts: false
 
 serviceAccount:
   create: false

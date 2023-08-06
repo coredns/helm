@@ -47,4 +47,7 @@ spec:
   {{- if .Values.service.ipFamilyPolicy }}
   ipFamilyPolicy: {{ .Values.service.ipFamilyPolicy }}
   {{- end }}
+  {{- if .Values.service.customOptions }}
+{{ toYaml .Values.service.customOptions | indent 4 }}
+  {{- end }}
 {{- end }}
