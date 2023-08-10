@@ -5,6 +5,7 @@
 - Manuel Rüger <https://github.com/mrueg>
 - Adam Hamsik <https://github.com/haad>
 - Hagai Barel <https://github.com/hagaibarel>
+- Shubham Gupta <https://github.com/shubham-cmyk>
 
 ## Original Helm Chart Contributors
 
