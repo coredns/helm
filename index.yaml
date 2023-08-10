@@ -7,6 +7,34 @@ entries:
           description: Fix wrong namespaceSelector in ServiceMonitor when using custom monitoring namespace
     apiVersion: v2
     appVersion: 1.10.1
+    created: "2023-08-10T08:21:14.464438916Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 46443db2ecffbc960328776299f7aec8f180195b416d002031302e2dde4be7e1
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: HagaiBarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.24.5/coredns-1.24.5.tgz
+    version: 1.24.5
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix wrong namespaceSelector in ServiceMonitor when using custom monitoring namespace
+    apiVersion: v2
+    appVersion: 1.10.1
     created: "2023-08-08T03:37:42.552393303Z"
     description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
       DNS Services
@@ -983,4 +1011,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-08-08T03:37:42.552716208Z"
+generated: "2023-08-10T08:21:14.46477462Z"
