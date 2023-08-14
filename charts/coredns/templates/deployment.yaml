@@ -131,12 +131,6 @@ spec:
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
           failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
         {{- end }}
-        {{- if .Values.preStopSleep }}
-        lifecycle:
-          preStop:
-            exec:
-              command: ["/usr/bin/sleep", "{{ .Values.preStopSleep }}"]
-        {{- end }}
 {{- if .Values.securityContext }}
         securityContext:
 {{- toYaml .Values.securityContext | nindent 10 }}
