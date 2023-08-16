@@ -4,6 +4,34 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgrade CoreDNS to 1.11.1
+    apiVersion: v2
+    appVersion: 1.11.1
+    created: "2023-08-16T07:11:24.573491312Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 78093091790c0a193cd9be5fe3f8d69cd82124c3097433811f265522d1755621
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.26.0/coredns-1.26.0.tgz
+    version: 1.26.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgrade CoreDNS to 1.11.0
         - kind: removed
           description: remove the preStopSleep option, the docker image doesn't contain the sleep binary
@@ -1041,4 +1069,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-08-14T12:31:36.898847552Z"
+generated: "2023-08-16T07:11:24.573938521Z"
