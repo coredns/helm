@@ -218,6 +218,11 @@ zoneFiles: []
 #      example.com.   IN A   192.168.99.102
 #      *.example.com. IN A   192.168.99.102
 
+# optional array of sidecar containers
+extraContainers: []
+# - name: some-container-name
+#   image: some-image:latest
+#   imagePullPolicy: Always
 # optional array of extra volumes to create
 extraVolumes: []
 # - name: some-volume-name
@@ -348,6 +353,12 @@ autoscaler:
     timeoutSeconds: 5
     failureThreshold: 3
     successThreshold: 1
+
+  # optional array of sidecar containers
+  extraContainers: []
+  # - name: some-container-name
+  #   image: some-image:latest
+  #   imagePullPolicy: Always
 
 deployment:
   enabled: true

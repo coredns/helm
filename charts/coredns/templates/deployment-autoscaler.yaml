@@ -93,3 +93,6 @@ spec:
 {{ toYaml .Values.autoscaler.customFlags | indent 10 }}
         {{- end }}
 {{- end }}
+{{- if .Values.autoscaler.extraContainers }}
+{{ toYaml .Values.autoscaler.extraContainers | indent 8 }}
+{{- end }}

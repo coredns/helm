@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.26.0
+version: 1.27.0
 appVersion: 1.11.1
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -20,5 +20,5 @@ engine: gotpl
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Upgrade CoreDNS to 1.11.1
+    - kind: added
+      description: Added support for sidecar containers via extraContainers
