@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Added support for sidecar containers via extraContainers
+    apiVersion: v2
+    appVersion: 1.11.1
+    created: "2023-10-02T08:01:41.450728277Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 4ee0807012255777a3a4cce783ee55fdb742aaafc1fc3d3b58c7ad8daf472f9e
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.27.0/coredns-1.27.0.tgz
+    version: 1.27.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Upgrade CoreDNS to 1.11.1
     apiVersion: v2
@@ -1069,4 +1097,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-08-16T07:11:24.573938521Z"
+generated: "2023-10-02T08:01:41.451038451Z"
