@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.27.0
+version: 1.27.1
 appVersion: 1.11.1
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -20,5 +20,5 @@ engine: gotpl
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Added support for sidecar containers via extraContainers
+    - kind: fixed
+      description: Fixed indentation for sidecar containers
