@@ -28,3 +28,6 @@ rules:
     resources: ["configmaps"]
     verbs: ["get", "create"]
 {{- end }}
+  {{- with .Values.autoscaler.additionalClusterRoleRules -}}
+  {{ toYaml . | nindent 2 }}
+  {{- end -}}

@@ -34,3 +34,6 @@ rules:
   - {{ template "coredns.fullname" . }}
 {{- end }}
 {{- end }}
+{{- with .Values.additionalClusterRoleRules -}}
+{{ toYaml . | nindent 0 }}
+{{- end -}}

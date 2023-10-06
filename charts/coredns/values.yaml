@@ -76,6 +76,15 @@ rbac:
   # If not set and create is true, a name is generated using the fullname template
   # name:
 
+# Configure additional rules for the clusterRole.
+additionalClusterRoleRules: []
+#  - apiGroups:
+#      - ""
+#    resources:
+#      - "nodes/proxy"
+#    verbs:
+#      - "get"
+
 # isClusterService specifies whether chart should be deployed as cluster-service or normal k8s app.
 isClusterService: true
 
@@ -316,6 +325,15 @@ autoscaler:
     pullSecrets: []
     # pullSecrets:
     #   - name: myRegistryKeySecretName
+
+  # Configure additional rules for the autoscaler clusterRole.
+  additionalClusterRoleRules: []
+#    - apiGroups:
+#        - ""
+#      resources:
+#        - "nodes/proxy"
+#      verbs:
+#        - "get"
 
   # Optional priority class to be used for the autoscaler pods. priorityClassName used if not set.
   priorityClassName: ""
