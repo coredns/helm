@@ -181,14 +181,23 @@ readinessProbe:
 affinity: {}
 
 # expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#topologyspreadconstraint-v1-core
-# for example:
+# and supports Helm templating.
+# For example:
 #   topologySpreadConstraints:
-#   - maxSkew: 1
-#     topologyKey: zone
-#     whenUnsatisfiable: DoNotSchedule
-#     labelSelector:
-#       matchLabels:
-#         foo: bar
+#     - labelSelector:
+#         matchLabels:
+#           app.kubernetes.io/name: '{{ template "coredns.name" . }}'
+#           app.kubernetes.io/instance: '{{ .Release.Name }}'
+#       topologyKey: topology.kubernetes.io/zone
+#       maxSkew: 1
+#       whenUnsatisfiable: ScheduleAnyway
+#     - labelSelector:
+#         matchLabels:
+#           app.kubernetes.io/name: '{{ template "coredns.name" . }}'
+#           app.kubernetes.io/instance: '{{ .Release.Name }}'
+#       topologyKey: kubernetes.io/hostname
+#       maxSkew: 1
+#       whenUnsatisfiable: ScheduleAnyway
 topologySpreadConstraints: []
 
 # Node labels for pod assignment
