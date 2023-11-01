@@ -237,8 +237,10 @@ extraVolumeMounts: []
 extraSecrets: []
 # - name: etcd-client-certs
 #   mountPath: /etc/coredns/tls/etcd
+#   defaultMode: 420
 # - name: some-fancy-secret
 #   mountPath: /etc/wherever
+#   defaultMode: 440
 
 # To support legacy deployments using CoreDNS with the "k8s-app: kube-dns" label selectors.
 # See https://github.com/coredns/helm/blob/master/charts/coredns/README.md#adopting-existing-coredns-resources
