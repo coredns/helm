@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.27.1
+version: 1.27.2
 appVersion: 1.11.1
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -22,3 +22,5 @@ annotations:
   artifacthub.io/changes: |
     - kind: fixed
       description: Fixed indentation for sidecar containers
+    - kind: added
+      description: Added option to override defaultMode for extraSecrets
