@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: topologySpreadConstraints can be templated values
+    apiVersion: v2
+    appVersion: 1.11.1
+    created: "2023-11-02T08:10:27.195019527Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: f778567b179d4bee3280782b996b16506bc8df842c353e48e6ac577e34eaa350
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.28.0/coredns-1.28.0.tgz
+    version: 1.28.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Fixed indentation for sidecar containers
     apiVersion: v2
@@ -1125,4 +1153,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-10-04T16:02:34.406470953Z"
+generated: "2023-11-02T08:10:27.195752128Z"
