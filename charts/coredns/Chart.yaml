@@ -20,7 +20,5 @@ engine: gotpl
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: Fixed indentation for sidecar containers
     - kind: added
       description: Added option to override defaultMode for extraSecrets
