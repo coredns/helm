@@ -4,6 +4,34 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: Added option to override defaultMode for extraSecrets
+    apiVersion: v2
+    appVersion: 1.11.1
+    created: "2023-11-02T14:08:20.460135326Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 16ede7be3154a9bd826c83d6b2d797a8d8b8b9b20e473b8969ae513fe6a275d0
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.28.1/coredns-1.28.1.tgz
+    version: 1.28.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: topologySpreadConstraints can be templated values
     apiVersion: v2
     appVersion: 1.11.1
@@ -1153,4 +1181,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-11-02T08:10:27.195752128Z"
+generated: "2023-11-02T14:08:20.461360449Z"
