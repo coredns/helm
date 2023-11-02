@@ -73,7 +73,7 @@ spec:
       {{- end }}
       {{- if .Values.topologySpreadConstraints }}
       topologySpreadConstraints:
-{{ toYaml .Values.topologySpreadConstraints | indent 8 }}
+{{ tpl (toYaml .Values.topologySpreadConstraints) $ | indent 8 }}
       {{- end }}
       {{- if .Values.tolerations }}
       tolerations:
