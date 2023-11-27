@@ -8,6 +8,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ template "coredns.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels: {{- include "coredns.labels" . | nindent 4 }}
 {{- if .Values.customLabels }}
 {{ toYaml .Values.customLabels | indent 4 }}
