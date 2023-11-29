@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: add .Release.Namespace in metadata
+    apiVersion: v2
+    appVersion: 1.11.1
+    created: "2023-11-29T20:58:53.095201569Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: f64ae3551ca1187264a9421ca61f46b0b4b563333c3cb53d7e25d3b236970cab
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.28.2/coredns-1.28.2.tgz
+    version: 1.28.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Added option to override defaultMode for extraSecrets
     apiVersion: v2
@@ -1181,4 +1209,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-11-02T14:08:20.461360449Z"
+generated: "2023-11-29T20:58:53.09560156Z"
