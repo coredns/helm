@@ -19,5 +19,7 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: add .Release.Namespace in metadata
+    - kind: changed
+      description: Ignore duplicate strings in the fullname helper template
+    - kind: removed
+      description: Removed deprecated "engine: gotpl" from the Chart.yaml
