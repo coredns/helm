@@ -3,6 +3,36 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Ignore duplicate strings in the fullname helper template
+        - kind: removed
+          description: Removed deprecated "engine: gotpl" from the Chart.yaml
+    apiVersion: v2
+    appVersion: 1.11.1
+    created: "2023-12-28T07:10:01.535158226Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 3c73d9d62313dae6e870abfe357e75059e00b8fef58d65dfd9a8f292614c2c3d
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.29.0/coredns-1.29.0.tgz
+    version: 1.29.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: add .Release.Namespace in metadata
     apiVersion: v2
@@ -1209,4 +1239,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-11-29T20:58:53.09560156Z"
+generated: "2023-12-28T07:10:01.535458525Z"
