@@ -14,7 +14,7 @@ $ helm --namespace=kube-system install coredns coredns/coredns
 This chart bootstraps a [CoreDNS](https://github.com/coredns/coredns) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager. This chart will provide DNS Services and can be deployed in multiple configuration to support various scenarios listed below:
 
 - CoreDNS as a cluster dns service and a drop-in replacement for Kube/SkyDNS. This is the default mode and CoreDNS is deployed as cluster-service in kube-system namespace. This mode is chosen by setting `isClusterService` to true.
-- CoreDNS as an external dns service. In this mode CoreDNS is deployed as any kubernetes app in user specified namespace. The CoreDNS service can be exposed outside the cluster by using using either the NodePort or LoadBalancer type of service. This mode is chosen by setting `isClusterService` to false.
+- CoreDNS as an external dns service. In this mode CoreDNS is deployed as any kubernetes app in user specified namespace. The CoreDNS service can be exposed outside the cluster by using either the NodePort or LoadBalancer type of service. This mode is chosen by setting `isClusterService` to false.
 - CoreDNS as an external dns provider for kubernetes federation. This is a sub case of 'external dns service' which uses etcd plugin for CoreDNS backend. This deployment mode as a dependency on `etcd-operator` chart, which needs to be pre-installed.
 
 ## Prerequisites
@@ -47,9 +47,9 @@ The command removes all the Kubernetes components associated with the chart and 
 ## Configuration
 
 | Parameter                                      | Description                                                                                                                               | Default                                                      |
-| :--------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------- |
+|:-----------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------|
 | `image.repository`                             | The image repository to pull from                                                                                                         | coredns/coredns                                              |
-| `image.tag`                                    | The image tag to pull from (derived from Chart.yaml)                                                                                      | ``                                                      |
+| `image.tag`                                    | The image tag to pull from (derived from Chart.yaml)                                                                                      | ``                                                           |
 | `image.pullPolicy`                             | Image pull policy                                                                                                                         | IfNotPresent                                                 |
 | `image.pullSecrets`                            | Specify container image pull secrets                                                                                                      | `[]`                                                         |
 | `replicaCount`                                 | Number of replicas                                                                                                                        | 1                                                            |
@@ -110,6 +110,10 @@ The command removes all the Kubernetes components associated with the chart and 
 | `hpa.minReplicas`                              | Hpa minimum number of CoreDNS replicas                                                                                                    | `1`                                                          |
 | `hpa.maxReplicas`                              | Hpa maximum number of CoreDNS replicas                                                                                                    | `2`                                                          |
 | `hpa.metrics`                                  | Metrics definitions used by Hpa to scale up and down                                                                                      | {}                                                           |
+| `keda.enabled`                                 | Optionally enable KEDA for CoreDNS                                                                                                        | `false`                                                      |
+| `keda.fallback`                                | Optional. Section to specify fallback options                                                                                             | {}                                                           |
+| `keda.advanced`                                | Optional. Section to specify advanced options                                                                                             | {}                                                           |
+| `keda.triggers`                                | List of triggers to activate scaling of the target resource                                                                               | []                                                           |
 | `autoscaler.enabled`                           | Optionally enabled a cluster-proportional-autoscaler for CoreDNS                                                                          | `false`                                                      |
 | `autoscaler.coresPerReplica`                   | Number of cores in the cluster per CoreDNS replica                                                                                        | `256`                                                        |
 | `autoscaler.nodesPerReplica`                   | Number of nodes in the cluster per CoreDNS replica                                                                                        | `16`                                                         |
@@ -187,7 +191,7 @@ the autoscaler deployment.
 `replicaCount` is ignored if this is enabled.
 
 By setting `hpa.enabled = true` a [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
-is enabled for Coredns deployment. This can scale number of replicas based on meitrics
+is enabled for Coredns deployment. This can scale number of replicas based on metrics
 like CpuUtilization, MemoryUtilization or Custom ones.
 
 ## Adopting existing CoreDNS resources

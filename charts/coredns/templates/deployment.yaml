@@ -20,7 +20,7 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
-  {{- if and (not .Values.autoscaler.enabled) (not .Values.hpa.enabled) }}
+  {{- if and (not .Values.autoscaler.enabled) (not .Values.hpa.enabled) (not .Values.keda.enabled) }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   strategy:
