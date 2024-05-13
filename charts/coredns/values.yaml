@@ -289,6 +289,24 @@ hpa:
   maxReplicas: 2
   metrics: []
 
+## Configue KEDA (Kubernetes Event-driven Autoscaling) for coredns
+# See https://keda.sh/docs/2.14/concepts/scaling-deployments/#scaledobject-spec
+keda:
+  # Enabled the KEDA
+  enabled: false
+
+  # pollingInterval: 30
+  # cooldownPeriod: 300
+  # minReplicaCount: 1
+  # maxReplicaCount: 100
+
+  # Optional. Section to specify fallback options
+  fallback: {}
+  # Optional. Section to specify advanced options
+  advanced: {}
+  # List of triggers to activate scaling of the target resource
+  triggers: []
+
 ## Configue a cluster-proportional-autoscaler for coredns
 # See https://github.com/kubernetes-incubator/cluster-proportional-autoscaler
 autoscaler:

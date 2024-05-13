@@ -1,0 +1,32 @@
+{{- if and (.Values.keda.enabled) (not .Values.hpa.enabled) (not .Values.autoscaler.enabled) }}
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ template "coredns.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "coredns.labels" . | nindent 4 }}
+{{- if .Values.customLabels }}
+{{ toYaml .Values.customLabels | indent 4 }}
+{{- end }}
+{{- with .Values.customAnnotations }}
+  annotations:
+{{- toYaml . | nindent 4 }}
+{{- end }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ default (include "coredns.fullname" .) .Values.deployment.name }}
+  pollingInterval: {{ .Values.keda.pollingInterval | default 30 }}
+  cooldownPeriod:  {{ .Values.keda.cooldownPeriod | default 300 }}
+  idleReplicaCount: {{ .Values.keda.idleReplicaCount | default 0 }}
+  minReplicaCount: {{ .Values.keda.minReplicaCount | default 1 }}
+  maxReplicaCount: {{ .Values.keda.maxReplicaCount | default 100 }}
+  fallback:
+    {{- toYaml .Values.keda.fallback | nindent 4 }}
+  advanced:
+    {{- toYaml .Values.keda.advanced | nindent 4 }}
+  triggers:
+    {{- toYaml .Values.keda.triggers | nindent 4 }}
+{{- end }}

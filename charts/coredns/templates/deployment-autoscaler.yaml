@@ -1,4 +1,4 @@
-{{- if and (.Values.autoscaler.enabled) (not .Values.hpa.enabled) }}
+{{- if and (.Values.autoscaler.enabled) (not .Values.hpa.enabled) (not .Values.keda.enabled) }}
 ---
 apiVersion: apps/v1
 kind: Deployment
