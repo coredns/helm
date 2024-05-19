@@ -1,7 +1,7 @@
 apiVersion: v2
 name: coredns
-version: 1.16.4
-appVersion: 1.8.4
+version: 1.30.0
+appVersion: 1.11.1
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
 description: CoreDNS is a DNS server that chains plugins and provides Kubernetes DNS Services
@@ -14,8 +14,12 @@ sources:
 maintainers:
   - name: mrueg
   - name: haad
-engine: gotpl
+  - name: hagaibarel
+  - name: shubham-cmyk
 type: application
 annotations:
   artifacthub.io/changes: |
-    - Initial helm chart changelog
+    - kind: changed
+      description: Ignore duplicate strings in the fullname helper template
+    - kind: removed
+      description: Removed deprecated "engine: gotpl" from the Chart.yaml
