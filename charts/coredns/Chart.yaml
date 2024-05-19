@@ -23,3 +23,5 @@ annotations:
       description: Ignore duplicate strings in the fullname helper template
     - kind: removed
       description: Removed deprecated "engine: gotpl" from the Chart.yaml
+    - kind: added
+      description: Ability to skip configmap management

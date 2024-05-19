@@ -1,4 +1,4 @@
-{{- if .Values.deployment.enabled  }}
+{{- if .Values.deployment.enabled }}
 {{- if not .Values.deployment.skipConfig }}
 ---
 apiVersion: v1
