@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Ability to skip configmap management
+    apiVersion: v2
+    appVersion: 1.11.1
+    created: "2024-05-30T07:38:34.03988544Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 8c9018ecfba0a2a8309307df30a9999defc23fb14caf870b5ba0b04c8c653b91
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.30.0/coredns-1.30.0.tgz
+    version: 1.30.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Ignore duplicate strings in the fullname helper template
         - kind: removed
@@ -1239,4 +1267,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2023-12-28T07:10:01.535458525Z"
+generated: "2024-05-30T07:38:34.040205871Z"
