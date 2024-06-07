@@ -381,5 +381,5 @@ deployment:
   name: ""
   ## Annotations for the coredns deployment
   annotations: {}
-  ## Pod selector
+  ## Pod selector
   selector: {}
