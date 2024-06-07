@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.30.0
+version: 1.30.1
 appVersion: 1.11.1
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -20,4 +20,4 @@ type: application
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Ability to skip configmap management
+      description: Allow overriding the selectors for Deployment, Services, PodDisruptionBudget and ServiceMonitor
