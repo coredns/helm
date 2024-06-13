@@ -4,6 +4,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: Allow overriding the selectors for Deployment, Services, PodDisruptionBudget and ServiceMonitor
+        - kind: added
+          description: Setting `clusterRole.nameOverride` to allow overriding the ClusterRole name.
+    apiVersion: v2
+    appVersion: 1.11.1
+    created: "2024-06-13T13:10:11.686053229Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: a057fed7108dd3e355b5bebeafe2d8b621a20e31e353da1996185ae8595058ff
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.31.0/coredns-1.31.0.tgz
+    version: 1.31.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: Ability to skip configmap management
     apiVersion: v2
     appVersion: 1.11.1
@@ -1267,4 +1297,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2024-05-30T07:38:34.040205871Z"
+generated: "2024-06-13T13:10:11.686480612Z"
