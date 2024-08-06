@@ -1,7 +1,7 @@
 apiVersion: v2
 name: coredns
-version: 1.31.0
-appVersion: 1.11.1
+version: 1.32.0
+appVersion: 1.11.3
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
 description: CoreDNS is a DNS server that chains plugins and provides Kubernetes DNS Services
@@ -19,7 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Allow overriding the selectors for Deployment, Services, PodDisruptionBudget and ServiceMonitor
-    - kind: added
-      description: Setting `clusterRole.nameOverride` to allow overriding the ClusterRole name.
+    - kind: changed
+      description: Upgrade CoreDNS to 1.11.3
