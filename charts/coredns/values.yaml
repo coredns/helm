@@ -383,3 +383,32 @@ deployment:
   annotations: {}
   ## Pod selector
   selector: {}
+
+daemonset:
+  skipConfig: false
+  enabled: false
+  name: ""
+  ## Annotations for the coredns daemonset
+  annotations: {}
+  ## Pod selector
+  selector: {}
+
+cilium:
+  localRedirectPolicy:
+    # You need to enable localRedirectPolicy in Cilium to use this feature.
+    # Read more: https://docs.cilium.io/en/stable/network/kubernetes/local-redirect-policy/
+    enabled: false
+    name: ""
+    frontend:
+      ip: "169.254.169.254"
+      toPorts:
+      - port: "53"
+        protocol: "UDP"
+      - port: "53"
+        protocol: "TCP"
+    backend:
+      toPorts:
+      - port: "53"
+        protocol: "UDP"
+      - port: "53"
+        protocol: "TCP"

@@ -1,4 +1,3 @@
-{{- if .Values.deployment.enabled }}
 ---
 apiVersion: v1
 kind: Service
@@ -52,4 +51,3 @@ spec:
   {{- if .Values.service.ipFamilyPolicy }}
   ipFamilyPolicy: {{ .Values.service.ipFamilyPolicy }}
   {{- end }}
-{{- end }}

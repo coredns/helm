@@ -1,0 +1,38 @@
+{{- if .Values.cilium.localRedirectPolicy.enabled }}
+apiVersion: "cilium.io/v2"
+kind: CiliumLocalRedirectPolicy
+metadata:
+  name: {{ default (include "coredns.fullname" .) .Values.cilium.localRedirectPolicy.name }}
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "coredns.labels" . | nindent 4 }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- if .Values.customLabels }}
+{{ toYaml .Values.customLabels | indent 4 }}
+{{- end }}
+  {{- if or .Values.deployment.annotations .Values.customAnnotations }}
+  annotations:
+    {{- if .Values.customAnnotations }}
+    {{- toYaml .Values.customAnnotations | nindent 4 }}
+    {{- end }}
+  {{- end }}
+spec:
+  redirectFrontend:
+    addressMatcher:
+      ip: {{ .Values.cilium.localRedirectPolicy.frontend.ip }}
+      toPorts:
+      {{- toYaml .Values.cilium.localRedirectPolicy.frontend.toPorts | nindent 8 }}
+  redirectBackend:
+    localEndpointSelector:
+      matchLabels:
+        {{- if .Values.service.selector }}
+        {{- toYaml .Values.service.selector | nindent 10 }}
+        {{- else }}
+        app.kubernetes.io/instance: {{ .Release.Name | quote }}
+        {{- if .Values.isClusterService }}
+        k8s-app: {{ template "coredns.k8sapplabel" . }}
+        {{- end }}
+        app.kubernetes.io/name: {{ template "coredns.name" . }}
+        {{- end }}
+    toPorts:
+    {{- toYaml .Values.cilium.localRedirectPolicy.backend.toPorts | nindent 4 }}
+{{- end }}
