@@ -46,6 +46,9 @@ spec:
   {{- if .Values.service.loadBalancerIP }}
   loadBalancerIP: {{ .Values.service.loadBalancerIP }}
   {{- end }}
+  {{- if .Values.service.loadBalancerClass }}
+  loadBalancerClass: {{ .Values.service.loadBalancerClass }}
+  {{- end }}
   ports:
 {{ include "coredns.servicePorts" . | indent 2 -}}
   type: {{ default "ClusterIP" .Values.serviceType }}

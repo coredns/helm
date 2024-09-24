@@ -54,6 +54,7 @@ service:
 # clusterIP: ""
 # clusterIPs: []
 # loadBalancerIP: ""
+# loadBalancerClass: ""
 # externalIPs: []
 # externalTrafficPolicy: ""
 # ipFamilyPolicy: ""
