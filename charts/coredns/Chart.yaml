@@ -19,7 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Upgrade CoreDNS to 1.11.3
     - kind: added
       description: Add support for specifying the service loadBalancerClass.
