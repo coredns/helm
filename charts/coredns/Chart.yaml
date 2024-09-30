@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.33.0
+version: 1.34.0
 appVersion: 1.11.3
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -20,4 +20,4 @@ type: application
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Add support for specifying the service loadBalancerClass.
+      description: Support different service and container ports
