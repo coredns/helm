@@ -70,10 +70,11 @@ Generate the list of ports automatically from the server definitions
     {{- range .Values.servers -}}
         {{/* Capture port to avoid scoping awkwardness */}}
         {{- $port := toString .port -}}
+        {{- $serviceport := default .port .servicePort -}}
 
         {{/* If none of the server blocks has mentioned this port yet take note of it */}}
         {{- if not (hasKey $ports $port) -}}
-            {{- $ports := set $ports $port (dict "istcp" false "isudp" false) -}}
+            {{- $ports := set $ports $port (dict "istcp" false "isudp" false "serviceport" $serviceport) -}}
         {{- end -}}
         {{/* Retrieve the inner dict that holds the protocols for a given port */}}
         {{- $innerdict := index $ports $port -}}
@@ -116,10 +117,10 @@ Generate the list of ports automatically from the server definitions
     {{- range $port, $innerdict := $ports -}}
         {{- $portList := list -}}
         {{- if index $innerdict "isudp" -}}
-            {{- $portList = append $portList (dict "port" ($port | int) "protocol" "UDP" "name" (printf "udp-%s" $port)) -}}
+            {{- $portList = append $portList (dict "port" (get $innerdict "serviceport") "protocol" "UDP" "name" (printf "udp-%s" $port) "targetPort" ($port | int)) -}}
         {{- end -}}
         {{- if index $innerdict "istcp" -}}
-            {{- $portList = append $portList (dict "port" ($port | int) "protocol" "TCP" "name" (printf "tcp-%s" $port)) -}}
+            {{- $portList = append $portList (dict "port" (get $innerdict "serviceport") "protocol" "TCP" "name" (printf "tcp-%s" $port) "targetPort" ($port | int)) -}}
         {{- end -}}
 
         {{- range $portDict := $portList -}}

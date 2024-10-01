@@ -103,6 +103,8 @@ servers:
 - zones:
   - zone: .
   port: 53
+  # -- expose the service on a different port
+  # servicePort: 5353
   # If serviceType is nodePort you can specify nodePort here
   # nodePort: 30053
   # hostPort: 53
