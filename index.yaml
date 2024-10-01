@@ -4,6 +4,34 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: Support different service and container ports
+    apiVersion: v2
+    appVersion: 1.11.3
+    created: "2024-10-01T06:44:19.925670339Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 951af09ba3d777e52b720dd4e10a2801bb0f5137adba379b7bf6ced3a7682ae3
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.34.0/coredns-1.34.0.tgz
+    version: 1.34.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: Add support for specifying the service loadBalancerClass.
     apiVersion: v2
     appVersion: 1.11.3
@@ -1353,4 +1381,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2024-09-26T05:20:51.772023989Z"
+generated: "2024-10-01T06:44:19.925857257Z"
