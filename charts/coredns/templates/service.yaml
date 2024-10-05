@@ -56,3 +56,6 @@ spec:
   ipFamilyPolicy: {{ .Values.service.ipFamilyPolicy }}
   {{- end }}
 {{- end }}
+  {{- if .Values.service.trafficDistribution }}
+  trafficDistribution: {{ .Values.service.trafficDistribution }}
+  {{- end }}
