@@ -20,4 +20,4 @@ type: application
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Support different service and container ports
+      description: Support `trafficDistribution` property for service
