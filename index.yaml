@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Move `trafficDistribution` key to correct path
+    apiVersion: v2
+    appVersion: 1.11.3
+    created: "2024-10-08T12:00:16.777914865Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 0af7a146a1b5448ded5fb3ec013b8e4fe3ccd87c54edb69c7e0fda9159df5a0a
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.35.1/coredns-1.35.1.tgz
+    version: 1.35.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Support `trafficDistribution` property for service
     apiVersion: v2
@@ -1409,4 +1437,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2024-10-06T09:11:12.436862573Z"
+generated: "2024-10-08T12:00:16.778082614Z"
