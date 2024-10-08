@@ -43,7 +43,6 @@ prometheus:
       prometheus.io/scrape: "true"
       prometheus.io/port: "9153"
     selector: {}
-    # trafficDistribution: PreferClose
   monitor:
     enabled: false
     additionalLabels: {}
@@ -59,6 +58,7 @@ service:
 # externalIPs: []
 # externalTrafficPolicy: ""
 # ipFamilyPolicy: ""
+# trafficDistribution: PreferClose
   # The name of the Service
   # If not set, a name is generated using the fullname template
   name: ""
