@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.35.0
+version: 1.35.1
 appVersion: 1.11.3
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Support `trafficDistribution` property for service
+    - kind: changed
+      description: Move `trafficDistribution` key to correct path
