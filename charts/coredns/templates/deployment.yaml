@@ -108,6 +108,10 @@ spec:
 {{- if .Values.extraVolumeMounts }}
 {{- toYaml .Values.extraVolumeMounts | nindent 8}}
 {{- end }}
+{{- if .Values.env }}
+        env:
+{{- toYaml .Values.env | nindent 10}}
+{{- end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
