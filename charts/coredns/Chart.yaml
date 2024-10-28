@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.36.0
+version: 1.36.1
 appVersion: 1.11.3
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Add environment variables on container specs
+    - kind: fix
+      description: Add default values to chart to fix cluster role name templating issue
