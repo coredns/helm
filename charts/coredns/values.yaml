@@ -82,6 +82,11 @@ rbac:
   # If not set and create is true, a name is generated using the fullname template
   # name:
 
+clusterRole:
+  # By default a name is generated using the fullname template.
+  # Override here if desired:
+  nameOverride: ""
+
 # isClusterService specifies whether chart should be deployed as cluster-service or normal k8s app.
 isClusterService: true
 
