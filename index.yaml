@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: removed
+          description: Drop support for PodSecurityPolicy
+    apiVersion: v2
+    appVersion: 1.11.4
+    created: "2024-12-09T14:47:12.418602923Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 233c05ab608c7199811ce6cbbd50b6657ced803b47f8fd98706c7f8e119e6e8b
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.37.0/coredns-1.37.0.tgz
+    version: 1.37.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Bump to v1.11.4
     apiVersion: v2
@@ -1521,4 +1549,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2024-12-09T11:56:31.719146349Z"
+generated: "2024-12-09T14:47:12.418849243Z"
