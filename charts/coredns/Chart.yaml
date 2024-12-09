@@ -1,7 +1,7 @@
 apiVersion: v2
 name: coredns
-version: 1.36.1
-appVersion: 1.11.3
+version: 1.36.2
+appVersion: 1.11.4
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
 description: CoreDNS is a DNS server that chains plugins and provides Kubernetes DNS Services
@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: fix
-      description: Add default values to chart to fix cluster role name templating issue
+    - kind: changed
+      description: Bump to v1.11.4
