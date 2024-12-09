@@ -76,11 +76,6 @@ serviceAccount:
 rbac:
   # If true, create & use RBAC resources
   create: true
-  # If true, create and use PodSecurityPolicy
-  pspEnable: false
-  # The name of the ServiceAccount to use.
-  # If not set and create is true, a name is generated using the fullname template
-  # name:
 
 clusterRole:
   # By default a name is generated using the fullname template.
@@ -99,9 +94,13 @@ podSecurityContext: {}
 # Configure SecurityContext for Pod.
 # Ensure that required linux capability to bind port number below 1024 is assigned (`CAP_NET_BIND_SERVICE`).
 securityContext:
+  allowPrivilegeEscalation: false
   capabilities:
     add:
       - NET_BIND_SERVICE
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
 
 # Default zone is what Kubernetes recommends:
 # https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/#coredns-configmap-options

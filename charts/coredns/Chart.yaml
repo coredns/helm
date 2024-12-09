@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.36.2
+version: 1.37.0
 appVersion: 1.11.4
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Bump to v1.11.4
+    - kind: removed
+      description: Drop support for PodSecurityPolicy
