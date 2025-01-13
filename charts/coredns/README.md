@@ -207,7 +207,7 @@ You will also need to annotate and label your existing resources to allow Helm t
 annotations:
   meta.helm.sh/release-name: your-release-name
   meta.helm.sh/release-namespace: your-release-namespace
-label:
+labels:
   app.kubernetes.io/managed-by: Helm
 ```
 
