@@ -34,6 +34,16 @@ The command deploys CoreDNS on the Kubernetes cluster in the default configurati
 
 > **Tip**: List all releases using `helm list --all-namespaces`
 
+## OCI installing
+
+The chart can also be installed using the following:
+
+```console
+$ helm --namespace=kube-system install coredns oci://ghcr.io/coredns/charts/coredns --version 1.38.0
+```
+
+The command deploys the `1.38.0` version of CoreDNS on the Kubernetes cluster in the default configuration.
+
 ## Uninstalling the Chart
 
 To uninstall/delete the `coredns` deployment:

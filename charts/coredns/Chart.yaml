@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.37.1
+version: 1.38.0
 appVersion: 1.11.4
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -19,5 +19,7 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Fixed typo in readme
+    - kind: added
+      description: Adds publishing to github registry
+    - kind: added
+      description: Adds signing of helm chart

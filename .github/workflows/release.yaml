@@ -8,7 +8,22 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # needed to pull git repo and create "chart-release"
+      id-token: write # needed for signing the images with GitHub OIDC Token
     steps:
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@main
+        with:
+          cosign-release: "v2.4.1"
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3.3.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -19,7 +34,6 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-
       - name: Set up Helm
         uses: azure/setup-helm@v4
         with:
@@ -29,3 +43,16 @@ jobs:
         uses: helm/chart-releaser-action@v1.6.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Publish chart to ghcr.io
+        run: |
+          helm package charts/coredns
+          helm push coredns-*.tgz oci://ghcr.io/coredns/charts
+          rm -rf coredns-*.tgz
+
+      - name: Sign artifacts with Cosign
+        env:
+          COSIGN_EXPERIMENTAL: 1
+        working-directory: charts/coredns
+        run: |-
+          cosign sign ghcr.io/coredns/charts/coredns:$(yq .version Chart.yaml) --yes
