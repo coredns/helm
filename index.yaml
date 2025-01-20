@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Use image.tag for app.kubernetes.io/version label if defined
+    apiVersion: v2
+    appVersion: 1.11.4
+    created: "2025-01-20T07:37:53.33289119Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 25f0fd5fe0d43cfbb87407cf8fc6afaa461bb809f35d1ea76ce7ed8aaa17b0c0
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.37.2/coredns-1.37.2.tgz
+    version: 1.37.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Fixed typo in readme
     apiVersion: v2
@@ -1577,4 +1605,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2025-01-14T08:11:55.3806274Z"
+generated: "2025-01-20T07:37:53.333147862Z"
