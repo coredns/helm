@@ -4,6 +4,34 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: Fix helm install when using docker inmutable tags
+    apiVersion: v2
+    appVersion: 1.11.4
+    created: "2025-01-20T17:05:27.126134595Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: abb472aea1a2fa28fe96f0bc38acf515e1eab6b3c67b24194fa1aac12ad7c8a5
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.37.3/coredns-1.37.3.tgz
+    version: 1.37.3
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: Use image.tag for app.kubernetes.io/version label if defined
     apiVersion: v2
     appVersion: 1.11.4
@@ -1605,4 +1633,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2025-01-20T07:37:53.333147862Z"
+generated: "2025-01-20T17:05:27.126433823Z"
