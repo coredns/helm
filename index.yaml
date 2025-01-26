@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: github action missing "packages" permissions
+    apiVersion: v2
+    appVersion: 1.11.4
+    created: "2025-01-26T20:30:22.620194332Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 6217a08e2b32032731b08a75bea40bbd57318c1afd44445003002e739118b809
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.38.1/coredns-1.38.1.tgz
+    version: 1.38.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Adds publishing to github registry
         - kind: added
@@ -1663,4 +1691,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2025-01-26T18:10:56.247949361Z"
+generated: "2025-01-26T20:30:22.620448006Z"
