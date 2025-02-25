@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: align imagePullSecrets in Deployment and ServiceAccount
+    apiVersion: v2
+    appVersion: 1.12.0
+    created: "2025-02-25T09:52:45.562281577Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 8e5d31ab6d9387d07aec21f087487f0136b8c5aa26f9fd5edc9e8795c68a3ca6
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.39.1/coredns-1.39.1.tgz
+    version: 1.39.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Upgrade to CoreDNS 1.12.0
     apiVersion: v2
@@ -1719,4 +1747,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2025-01-29T15:02:38.303833004Z"
+generated: "2025-02-25T09:52:45.562613918Z"
