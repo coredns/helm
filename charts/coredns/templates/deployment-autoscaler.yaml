@@ -60,7 +60,7 @@ spec:
       nodeSelector:
 {{ toYaml .Values.autoscaler.nodeSelector | indent 8 }}
       {{- end }}
-      {{- if not (empty .Values.autoscaler.image.pullSecrets) }}
+      {{- if .Values.autoscaler.image.pullSecrets }}
       imagePullSecrets:
 {{ toYaml .Values.autoscaler.image.pullSecrets | indent 8 }}
       {{- end }}
