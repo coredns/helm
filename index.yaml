@@ -4,6 +4,34 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: improve default readiness probe config for shutdown
+    apiVersion: v2
+    appVersion: 1.12.0
+    created: "2025-03-25T18:29:19.164889525Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: d933301d883911faaf80cc75e9337e4660663a4b681f273508d5f05b9c4391ff
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.39.2/coredns-1.39.2.tgz
+    version: 1.39.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: align imagePullSecrets in Deployment and ServiceAccount
     apiVersion: v2
     appVersion: 1.12.0
@@ -1747,4 +1775,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2025-02-25T09:52:45.562613918Z"
+generated: "2025-03-25T18:29:19.165246154Z"
