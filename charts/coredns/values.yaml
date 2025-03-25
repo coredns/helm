@@ -118,7 +118,7 @@ servers:
   # Serves a /health endpoint on :8080, required for livenessProbe
   - name: health
     configBlock: |-
-      lameduck 5s
+      lameduck 10s
   # Serves a /ready endpoint on :8181, required for readinessProbe
   - name: ready
   # Required to query kubernetes API for data
@@ -174,9 +174,9 @@ livenessProbe:
 readinessProbe:
   enabled: true
   initialDelaySeconds: 30
-  periodSeconds: 10
+  periodSeconds: 5
   timeoutSeconds: 5
-  failureThreshold: 5
+  failureThreshold: 1
   successThreshold: 1
 
 # expects input structure as per specification https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#affinity-v1-core
