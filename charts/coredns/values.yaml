@@ -351,6 +351,8 @@ autoscaler:
     # pullSecrets:
     #   - name: myRegistryKeySecretName
 
+  lifecycle: ~
+
   # Optional priority class to be used for the autoscaler pods. priorityClassName used if not set.
   priorityClassName: ""
 
