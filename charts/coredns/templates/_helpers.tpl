@@ -83,7 +83,7 @@ Generate the list of ports automatically from the server definitions
         Look at each of the zones and check which protocol they serve
         At the moment the following are supported by CoreDNS:
         UDP: dns://
-        TCP: tls://, grpc://
+        TCP: tls://, grpc://, https://
         */}}
         {{- range .zones -}}
             {{- if has (default "" .scheme) (list "dns://") -}}
@@ -94,7 +94,7 @@ Generate the list of ports automatically from the server definitions
                 {{- $innerdict := set $innerdict "isudp" true -}}
             {{- end -}}
 
-            {{- if has (default "" .scheme) (list "tls://" "grpc://") -}}
+            {{- if has (default "" .scheme) (list "tls://" "grpc://" "https://") -}}
                 {{- $innerdict := set $innerdict "istcp" true -}}
             {{- end -}}
         {{- end -}}
@@ -155,7 +155,7 @@ Generate the list of ports automatically from the server definitions
         Look at each of the zones and check which protocol they serve
         At the moment the following are supported by CoreDNS:
         UDP: dns://
-        TCP: tls://, grpc://
+        TCP: tls://, grpc://, https://
         */}}
         {{- range .zones -}}
             {{- if has (default "" .scheme) (list "dns://") -}}
@@ -166,7 +166,7 @@ Generate the list of ports automatically from the server definitions
                 {{- $innerdict := set $innerdict "isudp" true -}}
             {{- end -}}
 
-            {{- if has (default "" .scheme) (list "tls://" "grpc://") -}}
+            {{- if has (default "" .scheme) (list "tls://" "grpc://" "https://") -}}
                 {{- $innerdict := set $innerdict "istcp" true -}}
             {{- end -}}
         {{- end -}}
