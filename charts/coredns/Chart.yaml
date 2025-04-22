@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
+    - kind: added
       description: add https:// to tcp-only scheme list
