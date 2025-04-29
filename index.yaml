@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: bump cluster-proportional-autoscaler to v1.9.0
+    apiVersion: v2
+    appVersion: 1.12.0
+    created: "2025-04-29T07:43:46.380503776Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 23d8d222060d1208139f54e15e36d79913d13b74f3952c8bdec997a4bc996ecc
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.41.0/coredns-1.41.0.tgz
+    version: 1.41.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: add https:// to tcp-only scheme list
     apiVersion: v2
@@ -1803,4 +1831,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2025-04-22T12:27:59.61149852Z"
+generated: "2025-04-29T07:43:46.380861823Z"
