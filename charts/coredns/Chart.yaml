@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: add https:// to tcp-only scheme list
+    - kind: changed
+      description: bump cluster-proportional-autoscaler to v1.9.0
