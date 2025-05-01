@@ -4,6 +4,34 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Added Helm unit tests for CoreDNS chart components
+    apiVersion: v2
+    appVersion: 1.12.0
+    created: "2025-05-01T10:11:53.026878446Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 130e446033b2acfbcd7b4ad3b15acda32b511f2aef2e56f6f452350129def6dd
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.42.0/coredns-1.42.0.tgz
+    version: 1.42.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: bump cluster-proportional-autoscaler to v1.9.0
     apiVersion: v2
     appVersion: 1.12.0
@@ -1831,4 +1859,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2025-04-29T07:43:46.380861823Z"
+generated: "2025-05-01T10:11:53.027150845Z"
