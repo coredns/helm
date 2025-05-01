@@ -44,6 +44,57 @@ $ helm --namespace=kube-system install coredns oci://ghcr.io/coredns/charts/core
 
 The command deploys the `1.38.0` version of CoreDNS on the Kubernetes cluster in the default configuration.
 
+## Helm Unit Testing & Debugging Guide
+
+This document explains how to write, run, and debug Helm unit tests for this chart using [helm-unittest](https://github.com/helm-unittest/helm-unittest).
+
+---
+
+### Prerequisites
+
+Install the Helm unittest plugin:
+
+```bash
+helm plugin install https://github.com/helm-unittest/helm-unittest
+```
+
+###  Running Unit Tests
+
+Run all unit tests in the chart folder (e.g., `./coredns`):
+
+```bash
+helm unittest ./coredns
+```
+
+To output results in **JUnit XML** format:
+
+```bash
+mkdir -p test-results
+helm unittest --strict \
+  --output-type JUnit \
+  --output-file test-results/helm-unittest-report.xml \
+  ./coredns
+```
+
+---
+
+### Debugging Helm Charts
+
+Render the chart templates with real values to debug:
+
+```bash
+helm template ./coredns  --debug
+```
+## YAML Intellisense in VS Code
+
+Add this line at the top of your unit test YAML files for schema validation and autocompletion in VS Code:
+
+```yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/helm-unittest/helm-unittest/main/schema/helm-testsuite.json
+```
+
+This improves YAML editing and error highlighting for test definitions.
+
 ## Uninstalling the Chart
 
 To uninstall/delete the `coredns` deployment:
