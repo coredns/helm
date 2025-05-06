@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.42.0
+version: 1.42.1
 appVersion: 1.12.0
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Added Helm unit tests for CoreDNS chart components
+    - kind: removed
+      description: Removed "istcp" true for default dns:// scheme
