@@ -102,6 +102,9 @@ securityContext:
       - ALL
   readOnlyRootFilesystem: true
 
+# Uses users of the host system. If set to false uses usernamespaces. Requires Kubernetes >= 1.33
+hostUsers: true
+
 # Default zone is what Kubernetes recommends:
 # https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/#coredns-configmap-options
 servers:

@@ -72,6 +72,9 @@ spec:
       {{- if .Values.isClusterService }}
       dnsPolicy: Default
       {{- end }}
+      {{- if not .Values.hostUsers }}
+      hostUsers: false
+      {{- end }}
       {{- if .Values.affinity }}
       affinity:
 {{ toYaml .Values.affinity | indent 8 }}
