@@ -4,6 +4,34 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: removed
+          description: Removed "istcp" true for default dns:// scheme in "coredns.containerPorts" definition.
+    apiVersion: v2
+    appVersion: 1.12.0
+    created: "2025-05-26T09:51:58.455805383Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: f97de17486f5bbd8ba59f9097d20de0bbb85b081c8548094cc47e7cf142971ad
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.42.2/coredns-1.42.2.tgz
+    version: 1.42.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: removed
           description: Removed "istcp" true for default dns:// scheme
     apiVersion: v2
     appVersion: 1.12.0
@@ -1887,4 +1915,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2025-05-06T10:41:29.782984708Z"
+generated: "2025-05-26T09:51:58.456223336Z"
