@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Upgrade CoreDNS to 1.12.2
+    apiVersion: v2
+    appVersion: 1.12.2
+    created: "2025-06-10T10:50:19.503404Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: ca5eac93afe18aa4297478a05ff45602f02e9aa7901648c8f90ed92e2f53c790
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.42.3/coredns-1.42.3.tgz
+    version: 1.42.3
+  - annotations:
+      artifacthub.io/changes: |
         - kind: removed
           description: Removed "istcp" true for default dns:// scheme in "coredns.containerPorts" definition.
     apiVersion: v2
@@ -1915,4 +1943,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2025-05-26T09:51:58.456223336Z"
+generated: "2025-06-10T10:50:19.503729978Z"
