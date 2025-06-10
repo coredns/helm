@@ -1,7 +1,7 @@
 apiVersion: v2
 name: coredns
-version: 1.42.2
-appVersion: 1.12.0
+version: 1.42.3
+appVersion: 1.12.2
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
 description: CoreDNS is a DNS server that chains plugins and provides Kubernetes DNS Services
@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: removed
-      description: Removed "istcp" true for default dns:// scheme in "coredns.containerPorts" definition.
+    - kind: changed
+      description: Upgrade CoreDNS to 1.12.2
