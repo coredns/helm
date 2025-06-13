@@ -86,7 +86,7 @@ Generate the list of ports automatically from the server definitions
         TCP: tls://, grpc://, https://
         */}}
         {{- range .zones -}}
-            {{- if has (default "" .scheme) (list "dns://") -}}
+            {{- if has (default "" .scheme) (list "dns://" "") -}}
                 {{/* Optionally enable tcp for this service as well */}}
                 {{- if eq (default false .use_tcp) true }}
                     {{- $innerdict := set $innerdict "istcp" true -}}
@@ -157,7 +157,7 @@ Generate the list of ports automatically from the server definitions
         TCP: tls://, grpc://, https://
         */}}
         {{- range .zones -}}
-            {{- if has (default "" .scheme) (list "dns://") -}}
+            {{- if has (default "" .scheme) (list "dns://" "") -}}
                 {{/* Optionally enable tcp for this service as well */}}
                 {{- if eq (default false .use_tcp) true }}
                     {{- $innerdict := set $innerdict "istcp" true -}}
