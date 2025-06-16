@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.42.3
+version: 1.42.4
 appVersion: 1.12.2
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Upgrade CoreDNS to 1.12.2
+    - kind: fixed
+      description: Fix service port removal if `scheme` is not defined, and enable use_tcp for default configuration.
