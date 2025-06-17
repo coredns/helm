@@ -403,3 +403,6 @@ deployment:
   annotations: {}
   ## Pod selector
   selector: {}
+
+# Configures initcontainers for the coredns deployment.
+initContainers: []
