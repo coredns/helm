@@ -1,7 +1,7 @@
 apiVersion: v2
 name: coredns
-version: 1.43.1
-appVersion: 1.12.2
+version: 1.43.2
+appVersion: 1.12.3
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
 description: CoreDNS is a DNS server that chains plugins and provides Kubernetes DNS Services
@@ -20,4 +20,4 @@ type: application
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: ServiceAccount now applies the `customLabels` field if set.
+      description: Bump to CoreDNS 1.12.3
