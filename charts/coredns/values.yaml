@@ -139,6 +139,7 @@ servers:
   - name: loop
   - name: reload
   - name: loadbalance
+  - name: log
 
 # Complete example with all the options:
 # - zones:                 # the `zones` block can be left out entirely, defaults to "."
