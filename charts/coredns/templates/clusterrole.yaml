@@ -33,4 +33,14 @@ rules:
   resourceNames:
   - {{ template "coredns.fullname" . }}
 {{- end }}
+{{- if .Values.rbac.multiclusterEnable }}
+- apiGroups:
+  - multicluster.x-k8s.io
+  resources:
+  - serviceexports
+  - serviceimports
+  verbs:
+  - list
+  - watch
+{{- end }}
 {{- end }}
