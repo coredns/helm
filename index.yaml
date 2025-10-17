@@ -4,6 +4,34 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Bump to CoreDNS 1.13.1
+    apiVersion: v2
+    appVersion: 1.13.1
+    created: "2025-10-17T08:36:34.651100795Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 2132958a78451d8379deaa84944fedccf2aeb9376beeb728b057585b83e31c90
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.45.0/coredns-1.45.0.tgz
+    version: 1.45.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Use tpl function for affinity values
         - kind: added
           description: Add kubernetes plugin multicluster required RBAC
@@ -2113,4 +2141,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2025-10-03T08:51:19.081444073Z"
+generated: "2025-10-17T08:36:34.651379257Z"
