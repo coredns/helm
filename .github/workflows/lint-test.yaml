@@ -56,7 +56,7 @@ jobs:
 
       - name: Publish JUnit test results
         if: steps.list-changed.outputs.changed == 'true'
-        uses: mikepenz/action-junit-report@v5
+        uses: mikepenz/action-junit-report@v6
         with:
           report_paths: test-results/*.xml
           check_name: Helm Unittest Report
