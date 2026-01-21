@@ -51,6 +51,9 @@ prometheus:
     namespace: ""
     interval: ""
     selector: {}
+    # relabelings to apply to samples before ingestion
+    # ref: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config
+    relabelings: []
 
 service:
 # clusterIP: ""
