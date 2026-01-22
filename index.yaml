@@ -3,6 +3,38 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Support for customAnnotations on ClusterRole and ClusterRoleBinding
+        - kind: added
+          description: Support for dnsConfig in deployment
+        - kind: added
+          description: Support for podLabels
+    apiVersion: v2
+    appVersion: 1.13.1
+    created: "2026-01-22T09:18:08.292390665Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 2fec99d09b8d02d3151ab8d0a3ed9328296c9ffcc0b01e2fa1d5f2679b1f6f61
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.45.1/coredns-1.45.1.tgz
+    version: 1.45.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Bump to CoreDNS 1.13.1
     apiVersion: v2
@@ -2141,4 +2173,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2025-10-17T08:36:34.651379257Z"
+generated: "2026-01-22T09:18:08.292665908Z"
