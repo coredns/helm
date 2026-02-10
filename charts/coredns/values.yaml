@@ -65,9 +65,9 @@ service:
   # If not set, a name is generated using the fullname template
   name: ""
   annotations: {}
+  labels: {}
   # Pod selector
   selector: {}
-  labels: {}
 
 serviceAccount:
   create: false
