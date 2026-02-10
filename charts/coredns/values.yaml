@@ -67,6 +67,7 @@ service:
   annotations: {}
   # Pod selector
   selector: {}
+  labels: {}
 
 serviceAccount:
   create: false
