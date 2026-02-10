@@ -239,8 +239,8 @@ Create the name of the service account to use
 Generate the service labels
 */}}
 {{- define "coredns.service.labels" -}}
-{{- $labels := merge (deepCopy (.Values.service.labels | default dict)) (.Values.customLabels | default dict) }}
-{{- if $labels }}
-{{ toYaml $labels }}
+{{- $labels := merge (.Values.service.labels | default dict) (.Values.customLabels | default dict) }}
+{{- with $labels }}
+{{ toYaml . }}
 {{- end }}
 {{- end }}
