@@ -49,7 +49,7 @@ jobs:
           done
       - name: Upload Helm unittest report
         if: steps.list-changed.outputs.changed == 'true'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: helm-unittest-reports
           path: test-results/
