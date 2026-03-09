@@ -6,9 +6,7 @@ metadata:
   name: {{ default (include "coredns.fullname" .) .Values.service.name }}
   namespace: {{ .Release.Namespace }}
   labels: {{- include "coredns.labels" . | nindent 4 }}
-{{- if .Values.customLabels }}
-{{ toYaml .Values.customLabels | indent 4 }}
-{{- end }}
+{{- include "coredns.service.labels" . | indent 4 }}
   {{- if or .Values.service.annotations .Values.customAnnotations }}
   annotations:
     {{- if .Values.service.annotations }}
