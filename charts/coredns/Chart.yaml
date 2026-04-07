@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.45.2
+version: 1.45.3
 appVersion: 1.13.1
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -19,5 +19,7 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
+    - kind: changed
+      description: Align default resources with upstream kubeadm CoreDNS defaults (remove CPU limit, set memory limit to 170Mi, set memory request to 70Mi)
     - kind: added
       description: Add configurable dnsPolicy for deployment
