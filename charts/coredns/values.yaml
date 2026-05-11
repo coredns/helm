@@ -19,11 +19,10 @@ replicaCount: 1
 
 resources:
   limits:
-    cpu: 100m
-    memory: 128Mi
+    memory: 170Mi
   requests:
     cpu: 100m
-    memory: 128Mi
+    memory: 70Mi
 
 rollingUpdate:
   maxUnavailable: 1
