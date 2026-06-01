@@ -12,6 +12,18 @@ set:
       enabled: true
       namespace: monitoring
       interval: 15s
+      scrapeTimeout: 10s
+      scheme: https
+      honorLabels: true
+      tlsConfig:
+        insecureSkipVerify: true
+      relabelings:
+        - sourceLabels: [__address__]
+          targetLabel: instance
+      metricRelabelings:
+        - sourceLabels: [__name__]
+          regex: coredns_dns_request_duration_seconds.*
+          action: keep
       additionalLabels:
         team: infra
       selector:
@@ -62,3 +74,27 @@ tests:
       - equal:
           path: spec.endpoints[0].interval
           value: 15s
+
+      - equal:
+          path: spec.endpoints[0].scrapeTimeout
+          value: 10s
+
+      - equal:
+          path: spec.endpoints[0].scheme
+          value: https
+
+      - equal:
+          path: spec.endpoints[0].honorLabels
+          value: true
+
+      - equal:
+          path: spec.endpoints[0].tlsConfig.insecureSkipVerify
+          value: true
+
+      - equal:
+          path: spec.endpoints[0].relabelings[0].targetLabel
+          value: instance
+
+      - equal:
+          path: spec.endpoints[0].metricRelabelings[0].action
+          value: keep
