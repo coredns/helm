@@ -50,6 +50,12 @@ prometheus:
     additionalLabels: {}
     namespace: ""
     interval: ""
+    scrapeTimeout: ""
+    scheme: ""
+    honorLabels: false
+    tlsConfig: {}
+    relabelings: []
+    metricRelabelings: []
     selector: {}
 
 service:
