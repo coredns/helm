@@ -187,7 +187,7 @@ Generate the list of ports automatically from the server definitions
             {{- if eq .name "prometheus" -}}
                 {{- $prometheus_addr := toString .parameters -}}
                 {{- $prometheus_addr_list := regexSplit ":" $prometheus_addr -1 -}}
-                {{- $prometheus_port := index $prometheus_addr_list 1 -}}
+                {{- $prometheus_port := last $prometheus_addr_list }}
                 {{- $ports := set $ports $prometheus_port (dict "istcp" true "isudp" false) -}}
             {{- end -}}
         {{- end -}}
