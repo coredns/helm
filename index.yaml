@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Chart will no longer fail to render if ipv6 address is used in prometheus plugin parameters
+    apiVersion: v2
+    appVersion: 1.13.1
+    created: "2026-07-16T05:27:30.954711298Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 037059ad9c47137e4026d1c3ea555ffa3c5b33bdeea44bc060a5432a82199c4c
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.46.1/coredns-1.46.1.tgz
+    version: 1.46.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Add scrapeTimeout, scheme, honorLabels, tlsConfig, relabelings, and metricRelabelings options to ServiceMonitor endpoint
     apiVersion: v2
@@ -2229,4 +2257,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2026-06-01T10:30:37.258004891Z"
+generated: "2026-07-16T05:27:30.955030666Z"
