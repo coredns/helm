@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Added podSecurityContext and container securityContext to the autoscaler templates.
+    apiVersion: v2
+    appVersion: 1.13.1
+    created: "2026-07-21T12:05:30.086812605Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 4c12217e06b5bf8cddf6250df55852832fbd5e0e4c89520fd10a96d0c4867b2b
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.46.2/coredns-1.46.2.tgz
+    version: 1.46.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Chart will no longer fail to render if ipv6 address is used in prometheus plugin parameters
     apiVersion: v2
@@ -2257,4 +2285,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2026-07-16T05:27:30.955030666Z"
+generated: "2026-07-21T12:05:30.087145117Z"
