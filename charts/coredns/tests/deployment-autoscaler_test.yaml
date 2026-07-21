@@ -84,6 +84,9 @@ tests:
           runAsUser: 1000
         securityContext:
           allowPrivilegeEscalation: false
+      hpa:
+        enabled: false
+    template: templates/deployment-autoscaler.yaml
     asserts:
       - equal:
           path: spec.template.spec.securityContext.runAsUser
