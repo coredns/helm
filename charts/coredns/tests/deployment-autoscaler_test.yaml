@@ -75,3 +75,19 @@ tests:
     asserts:
       - hasDocuments:
           count: 0
+
+  - it: should set pod and container security context
+    set:
+      autoscaler:
+        enabled: true
+        podSecurityContext:
+          runAsUser: 1000
+        securityContext:
+          allowPrivilegeEscalation: false
+    asserts:
+      - equal:
+          path: spec.template.spec.securityContext.runAsUser
+          value: 1000
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation
+          value: false
