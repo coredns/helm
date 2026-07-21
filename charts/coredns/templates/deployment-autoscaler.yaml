@@ -64,6 +64,9 @@ spec:
       imagePullSecrets:
 {{ toYaml .Values.autoscaler.image.pullSecrets | indent 8 }}
       {{- end }}
+      {{- if .Values.autoscaler.podSecurityContext }}
+      securityContext: {{ toYaml .Values.autoscaler.podSecurityContext | nindent 8 }}
+      {{- end }}
       containers:
       - name: autoscaler
         image: "{{ .Values.autoscaler.image.repository }}:{{ .Values.autoscaler.image.tag }}"
@@ -82,6 +85,10 @@ spec:
           successThreshold: {{ .Values.autoscaler.livenessProbe.successThreshold }}
           failureThreshold: {{ .Values.autoscaler.livenessProbe.failureThreshold }}
         {{- end }}
+{{- if .Values.autoscaler.securityContext }}
+        securityContext:
+{{- toYaml .Values.autoscaler.securityContext | nindent 10 }}  
+{{- end }} 
         command:
           - /cluster-proportional-autoscaler
           - --namespace={{ .Release.Namespace }}
