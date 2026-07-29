@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Bump to CoreDNS 1.14.6
+    apiVersion: v2
+    appVersion: 1.14.6
+    created: "2026-07-29T13:34:41.977981305Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: eedb1074a4b7300a8aaef68dbb43794a0a983637d1be8c57e6ca46dc4531407d
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.47.0/coredns-1.47.0.tgz
+    version: 1.47.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Added podSecurityContext and container securityContext to the autoscaler templates.
     apiVersion: v2
@@ -2285,4 +2313,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2026-07-21T12:05:30.087145117Z"
+generated: "2026-07-29T13:34:41.978368831Z"
