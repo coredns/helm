@@ -54,6 +54,30 @@ app.kubernetes.io/name: {{ template "coredns.name" . }}-autoscaler
 {{- end -}}
 
 {{/*
+Extra labels for autoscaler resources.
+Inherits top-level customLabels when autoscaler.inheritCustomLabels is true,
+then applies autoscaler.customLabels (overrides on key conflicts).
+*/}}
+{{- define "coredns.autoscaler.extraLabels" -}}
+{{- $labels := dict -}}
+{{- if .Values.autoscaler.inheritCustomLabels -}}
+{{- range $k, $v := (default dict .Values.customLabels) -}}
+{{- $_ := set $labels $k $v -}}
+{{- end -}}
+{{- end -}}
+{{- range $k, $v := (default dict .Values.autoscaler.customLabels) -}}
+{{- $_ := set $labels $k $v -}}
+{{- end -}}
+{{- if $labels -}}
+{{- toYaml $labels -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Allow k8s-app label to be overridden
+*/}}
+
+{{/*
 Allow k8s-app label to be overridden
 */}}
 {{- define "coredns.k8sapplabel" -}}

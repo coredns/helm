@@ -287,7 +287,8 @@ env: []
 # See https://github.com/coredns/helm/blob/master/charts/coredns/README.md#adopting-existing-coredns-resources
 # k8sAppLabelOverride: "kube-dns"
 
-# Custom labels to apply to Deployment, Pod, Configmap, Service, ServiceMonitor. Including autoscaler if enabled.
+# Custom labels to apply to Deployment, Pod, Configmap, Service, ServiceMonitor.
+# Also applied to the autoscaler when autoscaler.inheritCustomLabels is true.
 customLabels: {}
 
 # Custom annotations to apply to Deployment, Pod, Configmap, Service, ServiceMonitor. Including autoscaler if enabled.
@@ -342,6 +343,17 @@ autoscaler:
 
   # Annotations for the coredns proportional autoscaler pods
   podAnnotations: {}
+
+  # When true, top-level customLabels are also applied to the autoscaler Deployment/pods.
+  inheritCustomLabels: true
+  # Extra labels for the autoscaler Deployment and pods. Independent of customLabels
+  # when inheritCustomLabels is false.
+  customLabels: {}
+  # Extra labels applied only to autoscaler pods.
+  podLabels: {}
+  # Optional pod selector override for the autoscaler Deployment.
+  # If set, pod template labels must match this selector.
+  selector: {}
 
   podSecurityContext: {}
   securityContext:

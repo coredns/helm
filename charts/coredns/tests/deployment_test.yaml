@@ -60,3 +60,18 @@ tests:
       - equal:
           path: spec.template.spec.priorityClassName
           value: system-cluster-critical
+
+  - it: should still apply customLabels to the main CoreDNS deployment
+    set:
+      deployment:
+        enabled: true
+      customLabels:
+        team: dns
+    template: templates/deployment.yaml
+    asserts:
+      - equal:
+          path: metadata.labels.team
+          value: dns
+      - equal:
+          path: spec.template.metadata.labels.team
+          value: dns

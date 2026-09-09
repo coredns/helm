@@ -172,7 +172,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `extraVolumeMounts`                            | Optional array of volumes to mount inside the CoreDNS container                                                                           | []                                                           |
 | `extraSecrets`                                 | Optional array of secrets to mount inside the CoreDNS container                                                                           | []                                                           |
 | `env`                                          | Optional array of environment variables for CoreDNS container                                                                             | []                                                           |
-| `customLabels`                                 | Optional labels for Deployment(s), Pod, Service, ServiceMonitor objects                                                                   | {}                                                           |
+| `customLabels`                                 | Optional labels for Deployment, Pod, Service, ServiceMonitor. Also applied to the autoscaler when `autoscaler.inheritCustomLabels` is true | {}                                                           |
 | `customAnnotations`                            | Optional annotations for Deployment(s), Pod, Service, ServiceMonitor objects                                                              |
 | `rollingUpdate.maxUnavailable`                 | Maximum number of unavailable replicas during rolling update                                                                              | `1`                                                          |
 | `rollingUpdate.maxSurge`                       | Maximum number of pods created above desired number of pods                                                                               | `25%`                                                        |
@@ -214,7 +214,11 @@ The command removes all the Kubernetes components associated with the chart and 
 | `autoscaler.livenessProbe.timeoutSeconds`      | When the probe times out                                                                                                                  | `5`                                                          |
 | `autoscaler.livenessProbe.failureThreshold`    | Minimum consecutive failures for the probe to be considered failed after having succeeded.                                                | `3`                                                          |
 | `autoscaler.livenessProbe.successThreshold`    | Minimum consecutive successes for the probe to be considered successful after having failed.                                              | `1`                                                          |
-| `autoscaler.extraContainers`                   | Optional array of sidecar containers                                                                                                      | []                                                           |
+| `autoscaler.extraContainers`                   | Optional array of sidecar containers                                                                                                      | []
+| `autoscaler.inheritCustomLabels`               | Also apply top-level `customLabels` to the autoscaler Deployment and pods                                                                 | `true`                                                       |
+| `autoscaler.customLabels`                      | Extra labels for the autoscaler Deployment and pods                                                                                       | {}                                                           |
+| `autoscaler.podLabels`                         | Extra labels for autoscaler pods only                                                                                                     | {}                                                           |
+| `autoscaler.selector`                          | Optional pod selector override for the autoscaler Deployment. Pod labels must match if set                                                | {}                                                           |
 | `deployment.enabled`                           | Optionally disable the main deployment and its respective resources.                                                                      | `true`                                                       |
 | `deployment.name`                              | Name of the deployment if `deployment.enabled` is true. Otherwise the name of an existing deployment for the autoscaler or HPA to target. | `""`                                                         |
 | `deployment.annotations`                       | Annotations to add to the main deployment                                                                                                 | `{}`                                                         |
@@ -261,6 +265,12 @@ will be deployed. This will default to a coredns replica for every 256 cores, or
 and `autoscaler.nodesPerReplica`. When cluster is using large nodes (with more
 cores), `coresPerReplica` should dominate. If using small nodes,
 `nodesPerReplica` should dominate.
+
+To give the autoscaler different labels than CoreDNS (for example when `customLabels`
+includes `k8s-app: kube-dns`), set `autoscaler.inheritCustomLabels: false` and put
+autoscaler-only labels in `autoscaler.customLabels` / `autoscaler.podLabels`.
+If you set `autoscaler.selector`, those matchLabels must also exist on the autoscaler
+pod template.
 
 This also creates a ServiceAccount, ClusterRole, and ClusterRoleBinding for
 the autoscaler deployment.

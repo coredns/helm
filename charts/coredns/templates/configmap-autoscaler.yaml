@@ -6,8 +6,8 @@ metadata:
   name: {{ template "coredns.fullname" . }}-autoscaler
   namespace:  {{ .Release.Namespace }}
   labels: {{- include "coredns.labels.autoscaler" . | nindent 4 }}
-    {{- if .Values.customLabels }}
-    {{- toYaml .Values.customLabels | nindent 4 }}
+    {{- with (include "coredns.autoscaler.extraLabels" . | trim) }}
+    {{- . | nindent 4 }}
     {{- end }}
   {{- if or .Values.autoscaler.configmap.annotations .Values.customAnnotations }}
   annotations:

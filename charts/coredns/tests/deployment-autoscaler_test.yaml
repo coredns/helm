@@ -94,3 +94,128 @@ tests:
       - equal:
           path: spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation
           value: false
+
+  
+  - it: should still apply customLabels to autoscaler when inheritCustomLabels is true
+    set:
+      isClusterService: true
+      customLabels:
+        team: dns
+      autoscaler:
+        enabled: true
+      hpa:
+        enabled: false
+    template: templates/deployment-autoscaler.yaml
+    asserts:
+      - equal:
+          path: metadata.labels.team
+          value: dns
+      - equal:
+          path: spec.template.metadata.labels.team
+          value: dns
+      - equal:
+          path: spec.template.metadata.labels.k8s-app
+          value: coredns-autoscaler
+      - equal:
+          path: spec.selector.matchLabels["app.kubernetes.io/name"]
+          value: coredns-autoscaler
+      - equal:
+          path: spec.selector.matchLabels["app.kubernetes.io/instance"]
+          value: RELEASE-NAME
+
+  - it: should not copy customLabels k8s-app onto autoscaler when inheritCustomLabels is false
+    set:
+      isClusterService: true
+      customLabels:
+        k8s-app: kube-dns
+      autoscaler:
+        enabled: true
+        inheritCustomLabels: false
+      hpa:
+        enabled: false
+    template: templates/deployment-autoscaler.yaml
+    asserts:
+      - equal:
+          path: spec.template.metadata.labels.k8s-app
+          value: coredns-autoscaler
+      - notEqual:
+          path: spec.template.metadata.labels.k8s-app
+          value: kube-dns
+      - equal:
+          path: metadata.labels.k8s-app
+          value: coredns-autoscaler
+
+  - it: should use autoscaler customLabels and podLabels instead of shared customLabels
+    set:
+      customLabels:
+        team: dns
+      autoscaler:
+        enabled: true
+        inheritCustomLabels: false
+        customLabels:
+          team: autoscaler
+        podLabels:
+          role: scaler
+      hpa:
+        enabled: false
+    template: templates/deployment-autoscaler.yaml
+    asserts:
+      - equal:
+          path: metadata.labels.team
+          value: autoscaler
+      - equal:
+          path: spec.template.metadata.labels.team
+          value: autoscaler
+      - equal:
+          path: spec.template.metadata.labels.role
+          value: scaler
+      - notExists:
+          path: metadata.labels.role
+
+  - it: should allow overriding the autoscaler selector
+    set:
+      autoscaler:
+        enabled: true
+        selector:
+          matchLabels:
+            app.kubernetes.io/name: coredns-autoscaler
+            app.kubernetes.io/instance: RELEASE-NAME
+            component: autoscaler
+        podLabels:
+          component: autoscaler
+      hpa:
+        enabled: false
+    template: templates/deployment-autoscaler.yaml
+    asserts:
+      - equal:
+          path: spec.selector.matchLabels.component
+          value: autoscaler
+      - equal:
+          path: spec.template.metadata.labels.component
+          value: autoscaler
+
+  - it: should merge inherited customLabels with autoscaler customLabels
+    set:
+      customLabels:
+        team: dns
+      autoscaler:
+        enabled: true
+        inheritCustomLabels: true
+        customLabels:
+          owner: platform
+      hpa:
+        enabled: false
+    template: templates/deployment-autoscaler.yaml
+    asserts:
+      - equal:
+          path: metadata.labels.team
+          value: dns
+      - equal:
+          path: metadata.labels.owner
+          value: platform
+      - equal:
+          path: spec.template.metadata.labels.team
+          value: dns
+      - equal:
+          path: spec.template.metadata.labels.owner
+          value: platform
