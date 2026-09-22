@@ -219,3 +219,31 @@ tests:
       - equal:
           path: spec.template.metadata.labels.owner
           value: platform
+
+  - it: should omit replicas by default
+    set:
+      autoscaler.enabled: true
+    template: templates/deployment-autoscaler.yaml
+    asserts:
+      - notExists:
+          path: spec.replicas
+
+  - it: should allow multiple autoscaler replicas
+    set:
+      autoscaler.enabled: true
+      autoscaler.replicaCount: 2
+    template: templates/deployment-autoscaler.yaml
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 2
+
+  - it: should allow scaling autoscaler to zero
+    set:
+      autoscaler.enabled: true
+      autoscaler.replicaCount: 0
+    template: templates/deployment-autoscaler.yaml
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 0

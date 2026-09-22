@@ -24,6 +24,9 @@ metadata:
 {{- toYaml . | nindent 4 }}
 {{- end }}
 spec:
+  {{- if ne .Values.autoscaler.replicaCount nil }}
+  replicas: {{ .Values.autoscaler.replicaCount }}
+  {{- end }}
   selector:
     {{- if .Values.autoscaler.selector }}
     {{- toYaml .Values.autoscaler.selector | nindent 4 }}
