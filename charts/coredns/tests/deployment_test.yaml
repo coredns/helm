@@ -75,3 +75,29 @@ tests:
       - equal:
           path: spec.template.metadata.labels.team
           value: dns
+
+  - it: should run CoreDNS as the image's non-root user under the restricted Pod Security Standard by default
+    set:
+      deployment:
+        enabled: true
+    documentIndex: 0
+    template: templates/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.runAsNonRoot
+          value: true
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.runAsUser
+          value: 65532
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.runAsGroup
+          value: 65532
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.seccompProfile.type
+          value: RuntimeDefault
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation
+          value: false
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.capabilities.add
+          value: [NET_BIND_SERVICE]

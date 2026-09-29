@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.47.1
+version: 1.48.0
 appVersion: 1.14.6
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Allow separate labels and selector for the cluster-proportional-autoscaler Deployment
+    - kind: changed
+      description: The CoreDNS container runs as the image's non-root user (65532) with the RuntimeDefault seccomp profile by default, so the chart's defaults satisfy the restricted Pod Security Standard

@@ -99,8 +99,13 @@ priorityClassName: ""
 # Configure the pod level securityContext.
 podSecurityContext: {}
 
-# Configure SecurityContext for Pod.
+# Configure SecurityContext for the CoreDNS container.
+# The defaults satisfy the `restricted` Pod Security Standard, so the chart
+# installs into a namespace that enforces it.
 # Ensure that required linux capability to bind port number below 1024 is assigned (`CAP_NET_BIND_SERVICE`).
+# The CoreDNS image runs as the distroless `nonroot` user (uid/gid 65532) since
+# 1.11.0. The numeric ids are set here because images before 1.14.7 declare the
+# user by name, which the kubelet cannot verify when `runAsNonRoot` is true.
 securityContext:
   allowPrivilegeEscalation: false
   capabilities:
@@ -109,6 +114,11 @@ securityContext:
     drop:
       - ALL
   readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 65532
+  runAsGroup: 65532
+  seccompProfile:
+    type: RuntimeDefault
 
 # Default zone is what Kubernetes recommends:
 # https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/#coredns-configmap-options
