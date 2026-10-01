@@ -1,0 +1,162 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/helm-unittest/helm-unittest/main/schema/helm-testsuite.json
+suite: test autoscaler PodDisruptionBudget
+templates:
+  - templates/poddisruptionbudget-autoscaler.yaml
+set:
+  autoscaler.enabled: true
+release:
+  namespace: test-namespace
+tests:
+  - it: should select autoscaler pods and preserve metadata
+    set:
+      autoscaler.podDisruptionBudget.maxUnavailable: 1
+      customAnnotations:
+        owner: platform
+    asserts:
+      - isKind:
+          of: PodDisruptionBudget
+      - isAPIVersion:
+          of: policy/v1
+      - equal:
+          path: metadata.name
+          value: RELEASE-NAME-coredns-autoscaler
+      - equal:
+          path: metadata.namespace
+          value: test-namespace
+      - equal:
+          path: metadata.annotations.owner
+          value: platform
+      - equal:
+          path: spec.maxUnavailable
+          value: 1
+      - equal:
+          path: spec.selector.matchLabels
+          value:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: coredns-autoscaler
+            k8s-app: coredns-autoscaler
+
+  - it: should be disabled by default
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: should not render when autoscaler is disabled
+    set:
+      autoscaler.podDisruptionBudget.maxUnavailable: 1
+      autoscaler.enabled: false
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: should not render when HPA is enabled
+    set:
+      autoscaler.podDisruptionBudget.maxUnavailable: 1
+      hpa.enabled: true
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: should render when autoscaling an existing deployment
+    set:
+      autoscaler.podDisruptionBudget.maxUnavailable: 1
+      deployment.enabled: false
+      deployment.name: existing-coredns
+    asserts:
+      - hasDocuments:
+          count: 1
+
+  - it: should omit k8s-app selector outside cluster service mode
+    set:
+      autoscaler.podDisruptionBudget.maxUnavailable: 1
+      isClusterService: false
+    asserts:
+      - notExists:
+          path: spec.selector.matchLabels["k8s-app"]
+
+  - it: should inherit the custom deployment selector including expressions
+    set:
+      autoscaler.podDisruptionBudget.maxUnavailable: 1
+      autoscaler.selector:
+        matchLabels:
+          component: autoscaler
+        matchExpressions:
+          - key: team
+            operator: In
+            values: [dns]
+    asserts:
+      - equal:
+          path: spec.selector
+          value:
+            matchLabels:
+              component: autoscaler
+            matchExpressions:
+              - key: team
+                operator: In
+                values: [dns]
+
+  - it: should prefer an explicit PDB selector
+    set:
+      autoscaler.podDisruptionBudget.maxUnavailable: 1
+      autoscaler.selector.matchLabels.component: autoscaler
+      autoscaler.podDisruptionBudget.selector.matchLabels.role: scaler
+    asserts:
+      - equal:
+          path: spec.selector
+          value:
+            matchLabels:
+              role: scaler
+
+  - it: should preserve an explicitly empty selector
+    set:
+      autoscaler.podDisruptionBudget.maxUnavailable: 1
+      autoscaler.podDisruptionBudget.selector: {}
+    asserts:
+      - equal:
+          path: spec.selector
+          value: {}
+
+  - it: should support minAvailable without maxUnavailable
+    set:
+      autoscaler.podDisruptionBudget.minAvailable: 1
+    asserts:
+      - equal:
+          path: spec.minAvailable
+          value: 1
+      - notExists:
+          path: spec.maxUnavailable
+
+  - it: should merge inherited labels with autoscaler labels taking precedence
+    set:
+      autoscaler.podDisruptionBudget.maxUnavailable: 1
+      customLabels:
+        team: dns
+        owner: shared
+      autoscaler.customLabels:
+        owner: autoscaler
+      autoscaler.podLabels:
+        role: scaler
+    asserts:
+      - equal:
+          path: metadata.labels.team
+          value: dns
+      - equal:
+          path: metadata.labels.owner
+          value: autoscaler
+      - notExists:
+          path: metadata.labels.role
+
+  - it: should respect disabled label inheritance
+    set:
+      autoscaler.podDisruptionBudget.maxUnavailable: 1
+      customLabels:
+        team: dns
+      autoscaler.inheritCustomLabels: false
+      autoscaler.customLabels:
+        owner: autoscaler
+    asserts:
+      - notExists:
+          path: metadata.labels.team
+      - equal:
+          path: metadata.labels.owner
+          value: autoscaler

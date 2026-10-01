@@ -1,0 +1,30 @@
+{{- if and .Values.autoscaler.enabled (not .Values.hpa.enabled) .Values.autoscaler.podDisruptionBudget -}}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ template "coredns.fullname" . }}-autoscaler
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "coredns.labels.autoscaler" . | nindent 4 }}
+{{- with (include "coredns.autoscaler.extraLabels" . | trim) }}
+{{ . | indent 4 }}
+{{- end }}
+{{- with .Values.customAnnotations }}
+  annotations:
+{{- toYaml . | nindent 4 }}
+{{- end }}
+spec:
+  {{- if not (hasKey .Values.autoscaler.podDisruptionBudget "selector") }}
+  selector:
+    {{- if .Values.autoscaler.selector }}
+    {{- toYaml .Values.autoscaler.selector | nindent 4 }}
+    {{- else }}
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name | quote }}
+      {{- if .Values.isClusterService }}
+      k8s-app: {{ template "coredns.k8sapplabel" . }}-autoscaler
+      {{- end }}
+      app.kubernetes.io/name: {{ template "coredns.name" . }}-autoscaler
+    {{- end }}
+  {{- end }}
+{{ toYaml .Values.autoscaler.podDisruptionBudget | indent 2 }}
+{{- end }}

@@ -24,6 +24,10 @@ metadata:
 {{- toYaml . | nindent 4 }}
 {{- end }}
 spec:
+  {{- /* Preserve explicit replicaCount: 0; "with" treats zero as empty and would omit replicas. */}}
+  {{- if ne .Values.autoscaler.replicaCount nil }}
+  replicas: {{ .Values.autoscaler.replicaCount }}
+  {{- end }}
   selector:
     {{- if .Values.autoscaler.selector }}
     {{- toYaml .Values.autoscaler.selector | nindent 4 }}

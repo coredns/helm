@@ -186,6 +186,8 @@ The command removes all the Kubernetes components associated with the chart and 
 | `hpa.maxReplicas`                              | Hpa maximum number of CoreDNS replicas                                                                                                    | `2`                                                          |
 | `hpa.metrics`                                  | Metrics definitions used by Hpa to scale up and down                                                                                      | {}                                                           |
 | `autoscaler.enabled`                           | Optionally enabled a cluster-proportional-autoscaler for CoreDNS                                                                          | `false`                                                      |
+| `autoscaler.replicaCount` | Number of autoscaler pods; null omits replicas (Kubernetes defaults to one) | `null` |
+| `autoscaler.podDisruptionBudget` | Optional PodDisruptionBudget for autoscaler pods | `{}` |
 | `autoscaler.coresPerReplica`                   | Number of cores in the cluster per CoreDNS replica                                                                                        | `256`                                                        |
 | `autoscaler.nodesPerReplica`                   | Number of nodes in the cluster per CoreDNS replica                                                                                        | `16`                                                         |
 | `autoscaler.min`                               | Min size of replicaCount                                                                                                                  | 0                                                            |
@@ -271,6 +273,35 @@ includes `k8s-app: kube-dns`), set `autoscaler.inheritCustomLabels: false` and p
 autoscaler-only labels in `autoscaler.customLabels` / `autoscaler.podLabels`.
 If you set `autoscaler.selector`, those matchLabels must also exist on the autoscaler
 pod template.
+
+To keep the autoscaler available during voluntary disruptions, configure multiple
+replicas and a PodDisruptionBudget:
+
+```yaml
+autoscaler:
+  enabled: true
+  replicaCount: 2
+  podDisruptionBudget:
+    maxUnavailable: 1
+```
+
+`autoscaler.replicaCount` defaults to `null`, leaving the replica count unset
+(Kubernetes defaults to one). An explicit `0` scales the autoscaler to zero.
+These settings apply to the autoscaler pods; the top-level `replicaCount` and
+`podDisruptionBudget` apply to CoreDNS itself. Use `autoscaler.affinity` to spread
+autoscaler pods across nodes if needed.
+
+Autoscaler replicas run independent scaling loops without leader election. With
+the same configuration and cluster observations they calculate the same desired
+CoreDNS replica count, but may race during updates or briefly observe different
+cluster sizes. Additional replicas also increase API polling.
+
+The autoscaler PDB is disabled by default and is only rendered when the autoscaler
+Deployment is enabled (`autoscaler.enabled: true` and `hpa.enabled: false`). It
+also works with `deployment.enabled: false` when targeting an existing CoreDNS
+Deployment. Its selector defaults to the autoscaler Deployment selector, including
+`autoscaler.selector` overrides. An explicit `autoscaler.podDisruptionBudget.selector`
+takes precedence and must select the intended autoscaler pods.
 
 This also creates a ServiceAccount, ClusterRole, and ClusterRoleBinding for
 the autoscaler deployment.
