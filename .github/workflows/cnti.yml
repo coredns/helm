@@ -1,0 +1,64 @@
+# Installs the chart on a kind cluster, runs the CNTi Test Suite's essential tests
+# against it and publishes the result as the badge in the README.
+# https://github.com/lfn-cnti/testsuite-action
+name: CNTi essential
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+  # Pull requests that change the job or its configuration.
+  pull_request:
+    paths:
+      - .github/workflows/cnti.yml
+      - .github/cnti/**
+
+permissions:
+  contents: read
+
+# One run per branch or pull request at a time; a new commit on a pull
+# request cancels the run for the previous one.
+concurrency:
+  group: cnti-essential-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  # Runs on master (nightly or by hand): the only runs that publish the badge,
+  # and the only ones with a write token. Forks that enable scheduled workflows
+  # do not run either job.
+  essential:
+    if: github.repository == 'coredns/helm' && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      # Publishes the badge to the orphan branch `badges`.
+      contents: write
+    steps: &essential-steps
+      - uses: actions/checkout@v7
+        with:
+          # The suite doesn't need the job's write token; the action passes it
+          # to the badge publisher on its own.
+          persist-credentials: false
+
+      # Creates a kind cluster of a control plane and two workers, installs
+      # the chart with its defaults, and runs the essential tests.
+      - uses: lfn-cnti/testsuite-action@v1.2.0
+        with:
+          # A released suite version, bumped on purpose after reading the
+          # release notes.
+          version: v2.2.0
+          cnf_config: .github/cnti/cnti-testsuite.yaml
+          tests: cert
+          badge_branch: badges
+
+  # Pull requests that change the job or its configuration, and manual runs
+  # on other branches: the same steps with a read-only token. The action
+  # publishes the badge only from the default branch, so nothing is
+  # published here.
+  essential-pr:
+    if: github.repository == 'coredns/helm' && (github.event_name == 'pull_request' || github.ref != 'refs/heads/master')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps: *essential-steps
