@@ -75,7 +75,11 @@ service:
   selector: {}
 
 serviceAccount:
-  create: false
+  # Create a ServiceAccount for CoreDNS. The ClusterRole (list/watch on pods,
+  # services, endpoints, endpointslices and namespaces) is bound to this
+  # account; with create: false and no name it is bound to the namespace's
+  # "default" ServiceAccount, and so granted to every pod that runs as it.
+  create: true
   # The name of the ServiceAccount to use
   # If not set and create is true, a name is generated using the fullname template
   name: ""

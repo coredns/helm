@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.48.2
+version: 1.49.0
 appVersion: 1.14.7
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Add optional replica count and PodDisruptionBudget for the cluster-proportional-autoscaler
+    - kind: security
+      description: serviceAccount.create defaults to true, so CoreDNS runs as its own ServiceAccount and the chart's ClusterRole is no longer bound to the namespace's default ServiceAccount, which every pod without its own account uses
