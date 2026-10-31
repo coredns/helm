@@ -23,6 +23,9 @@ set:
     externalTrafficPolicy: "Local"
     loadBalancerIP: "4.3.2.1"
     loadBalancerClass: "my-lb-class"
+    ipFamilies:
+      - "IPv4"
+      - "IPv6"
     ipFamilyPolicy: "PreferDualStack"
     trafficDistribution: "Topology"
 
@@ -98,6 +101,12 @@ tests:
       - equal:
           path: spec.type
           value: ClusterIP
+
+      - equal:
+          path: spec.ipFamilies
+          value:
+            - IPv4
+            - IPv6
 
       - equal:
           path: spec.ipFamilyPolicy
