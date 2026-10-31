@@ -65,6 +65,7 @@ service:
 # loadBalancerClass: ""
 # externalIPs: []
 # externalTrafficPolicy: ""
+# ipFamilies: []
 # ipFamilyPolicy: ""
 # trafficDistribution: PreferClose
   # The name of the Service
