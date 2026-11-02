@@ -52,6 +52,10 @@ spec:
   ports:
 {{ include "coredns.servicePorts" . | indent 2 -}}
   type: {{ default "ClusterIP" .Values.serviceType }}
+  {{- if .Values.service.ipFamilies }}
+  ipFamilies:
+  {{- toYaml .Values.service.ipFamilies | nindent 4 }}
+  {{- end }}
   {{- if .Values.service.ipFamilyPolicy }}
   ipFamilyPolicy: {{ .Values.service.ipFamilyPolicy }}
   {{- end }}
