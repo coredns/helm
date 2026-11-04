@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Document that prometheus.monitor.enabled needs prometheus.service.enabled unless prometheus.monitor.selector is set
+    apiVersion: v2
+    appVersion: 1.14.7
+    created: "2026-11-04T19:44:34.972625004Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 5c19fe426425aa52439a89091042963fef8bacc6c9a07b9cb110afec24d7a26f
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.50.1/coredns-1.50.1.tgz
+    version: 1.50.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Expose service.ipFamilies in values
     apiVersion: v2
@@ -2481,4 +2509,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2026-11-02T08:21:39.589465096Z"
+generated: "2026-11-04T19:44:34.972847992Z"
