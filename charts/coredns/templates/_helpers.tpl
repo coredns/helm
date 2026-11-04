@@ -85,6 +85,28 @@ Allow k8s-app label to be overridden
 {{- end -}}
 
 {{/*
+Port a server block listens on. When port is not set, use the default
+CoreDNS picks for the scheme of the first zone.
+*/}}
+{{- define "coredns.serverPort" -}}
+    {{- if .port -}}
+        {{- toString .port -}}
+    {{- else -}}
+        {{- $scheme := "" -}}
+        {{- with .zones -}}
+            {{- $scheme = default "" (first .).scheme -}}
+        {{- end -}}
+        {{- if has $scheme (list "tls://" "quic://") -}}
+            853
+        {{- else if has $scheme (list "grpc://" "https://") -}}
+            443
+        {{- else -}}
+            53
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{/*
 Generate the list of ports automatically from the server definitions
 */}}
 {{- define "coredns.servicePorts" -}}
@@ -93,8 +115,8 @@ Generate the list of ports automatically from the server definitions
     {{/* Iterate through each of the server blocks */}}
     {{- range .Values.servers -}}
         {{/* Capture port to avoid scoping awkwardness */}}
-        {{- $port := toString .port -}}
-        {{- $serviceport := default .port .servicePort -}}
+        {{- $port := include "coredns.serverPort" . -}}
+        {{- $serviceport := default ($port | int) .servicePort -}}
 
         {{/* If none of the server blocks has mentioned this port yet take note of it */}}
         {{- if not (hasKey $ports $port) -}}
@@ -165,7 +187,7 @@ Generate the list of ports automatically from the server definitions
     {{/* Iterate through each of the server blocks */}}
     {{- range .Values.servers -}}
         {{/* Capture port to avoid scoping awkwardness */}}
-        {{- $port := toString .port -}}
+        {{- $port := include "coredns.serverPort" . -}}
 
         {{/* If none of the server blocks has mentioned this port yet take note of it */}}
         {{- if not (hasKey $ports $port) -}}

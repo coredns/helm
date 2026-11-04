@@ -115,3 +115,29 @@ tests:
       - equal:
           path: spec.trafficDistribution
           value: Topology
+
+  - it: should default service ports when a server has no port
+    set:
+      servers:
+        - zones:
+            - zone: .
+          plugins:
+            - name: errors
+        - zones:
+            - zone: example.org
+              scheme: https://
+          servicePort: 8443
+          plugins:
+            - name: errors
+    asserts:
+      - equal:
+          path: spec.ports
+          value:
+            - name: tcp-443
+              port: 8443
+              protocol: TCP
+              targetPort: 443
+            - name: udp-53
+              port: 53
+              protocol: UDP
+              targetPort: 53
