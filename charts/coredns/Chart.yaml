@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.50.0
+version: 1.50.1
 appVersion: 1.14.7
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -19,5 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Expose service.ipFamilies in values
+    - kind: fixed
+      description: Document that prometheus.monitor.enabled needs prometheus.service.enabled unless prometheus.monitor.selector is set

@@ -46,6 +46,8 @@ prometheus:
       prometheus.io/port: "9153"
     selector: {}
   monitor:
+    # The default selector matches the metrics Service, so this also needs
+    # prometheus.service.enabled unless monitor.selector is set.
     enabled: false
     additionalLabels: {}
     namespace: ""
