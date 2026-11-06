@@ -4,6 +4,34 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: Default the Service and container ports when a server block has no port set, instead of rendering null ports
+    apiVersion: v2
+    appVersion: 1.14.7
+    created: "2026-11-06T13:14:32.266701265Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 7ce11fe067925bcd32991f25a5040b0a0f8f8d32666a74ff60260fbb4054ffb7
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.50.2/coredns-1.50.2.tgz
+    version: 1.50.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: Document that prometheus.monitor.enabled needs prometheus.service.enabled unless prometheus.monitor.selector is set
     apiVersion: v2
     appVersion: 1.14.7
@@ -2509,4 +2537,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2026-11-04T19:44:34.972847992Z"
+generated: "2026-11-06T13:14:32.267037537Z"
