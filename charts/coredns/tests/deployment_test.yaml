@@ -101,3 +101,30 @@ tests:
       - equal:
           path: spec.template.spec.containers[0].securityContext.capabilities.add
           value: [NET_BIND_SERVICE]
+
+  - it: should default containerPorts when a server has no port
+    set:
+      deployment:
+        enabled: true
+      servers:
+        - zones:
+            - zone: .
+          plugins:
+            - name: errors
+        - zones:
+            - zone: example.org
+              scheme: tls://
+          plugins:
+            - name: errors
+    documentIndex: 0
+    template: templates/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].ports
+          value:
+            - containerPort: 53
+              name: udp-53
+              protocol: UDP
+            - containerPort: 853
+              name: tcp-853
+              protocol: TCP
