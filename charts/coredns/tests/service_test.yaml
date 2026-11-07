@@ -141,3 +141,11 @@ tests:
               port: 53
               protocol: UDP
               targetPort: 53
+
+  - it: should not render anything when the deployment is disabled
+    set:
+      deployment:
+        enabled: false
+    asserts:
+      - hasDocuments:
+          count: 0
