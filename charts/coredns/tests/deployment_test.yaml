@@ -166,3 +166,31 @@ tests:
       - equal:
           path: spec.template.spec.containers[0].livenessProbe.initialDelaySeconds
           value: 30
+
+
+  - it: should report a failed container's reason in its termination message by default
+    template: templates/deployment.yaml
+    documentIndex: 0
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].terminationMessagePolicy
+          value: FallbackToLogsOnError
+
+  - it: should take terminationMessagePolicy from values
+    set:
+      terminationMessagePolicy: File
+    template: templates/deployment.yaml
+    documentIndex: 0
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].terminationMessagePolicy
+          value: File
+
+  - it: should leave terminationMessagePolicy unset when it is empty
+    set:
+      terminationMessagePolicy: ""
+    template: templates/deployment.yaml
+    documentIndex: 0
+    asserts:
+      - notExists:
+          path: spec.template.spec.containers[0].terminationMessagePolicy
