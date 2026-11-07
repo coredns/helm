@@ -1,0 +1,14 @@
+# The essential tests' results this chart knows and accepts, for the CNTi job
+# (.github/workflows/cnti.yml, expected_results). A test not listed is expected
+# to pass. When a result changes, the job says so in its summary and as a
+# warning; the badge doesn't change. Update this file in the pull request that
+# changes the result.
+- test: specialized_init_system
+  status: failed
+  reason: >-
+    The CoreDNS image runs the coredns binary as PID 1, with no init process
+    such as tini
+- test: zombie_handled
+  status: failed
+  reason: >-
+    With coredns as PID 1 and no init process, nothing reaps an orphaned child
