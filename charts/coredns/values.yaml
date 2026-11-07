@@ -189,17 +189,22 @@ servers:
 extraConfig: {}
 
 # To use the livenessProbe, the health plugin needs to be enabled in CoreDNS' server config
+# The health plugin answers as soon as CoreDNS runs, so the probe needs no
+# initial delay; failureThreshold 5 every 10 s still allows 50 s to start.
 livenessProbe:
   enabled: true
-  initialDelaySeconds: 60
+  initialDelaySeconds: 0
   periodSeconds: 10
   timeoutSeconds: 5
   failureThreshold: 5
   successThreshold: 1
 # To use the readinessProbe, the ready plugin needs to be enabled in CoreDNS' server config
+# The ready plugin answers 200 only once every plugin that reports readiness
+# (kubernetes among them) is ready, so the probe needs no initial delay; with
+# failureThreshold 1 an early probe only keeps the pod out of the Service.
 readinessProbe:
   enabled: true
-  initialDelaySeconds: 30
+  initialDelaySeconds: 0
   periodSeconds: 5
   timeoutSeconds: 5
   failureThreshold: 1
