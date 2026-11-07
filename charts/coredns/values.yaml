@@ -188,6 +188,11 @@ servers:
 #     parameters: /opt/coredns/*.conf
 extraConfig: {}
 
+# How the CoreDNS container reports why it stopped. FallbackToLogsOnError
+# copies the tail of its log into the termination message when it exits with
+# an error, so `kubectl describe pod` shows the reason, such as a bad Corefile.
+terminationMessagePolicy: FallbackToLogsOnError
+
 # To use the livenessProbe, the health plugin needs to be enabled in CoreDNS' server config
 # The health plugin answers as soon as CoreDNS runs, so the probe needs no
 # initial delay; failureThreshold 5 every 10 s still allows 50 s to start.

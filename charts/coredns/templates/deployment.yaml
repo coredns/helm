@@ -114,6 +114,9 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args: [ "-conf", "/etc/coredns/Corefile" ]
+        {{- with .Values.terminationMessagePolicy }}
+        terminationMessagePolicy: {{ . }}
+        {{- end }}
         volumeMounts:
         - name: config-volume
           mountPath: /etc/coredns
