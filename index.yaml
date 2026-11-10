@@ -4,6 +4,34 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: Do not render service.trafficDistribution on its own when deployment.enabled is false
+    apiVersion: v2
+    appVersion: 1.14.7
+    created: "2026-11-10T08:07:50.025620171Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 4d2744bb85804a810200aeeac608e5a079086dad74419f13a255f64f364aab01
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.50.4/coredns-1.50.4.tgz
+    version: 1.50.4
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: Document values missing from the README and drop the stale top-level dnsConfig row
     apiVersion: v2
     appVersion: 1.14.7
@@ -2565,4 +2593,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2026-11-09T10:33:09.21617068Z"
+generated: "2026-11-10T08:07:50.025855178Z"
