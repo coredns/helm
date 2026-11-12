@@ -166,3 +166,63 @@ tests:
       - equal:
           path: spec.template.spec.containers[0].livenessProbe.initialDelaySeconds
           value: 30
+
+  - it: should render the startup probe with default timing
+    template: templates/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].startupProbe
+          value:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 2
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 30
+      - exists:
+          path: spec.template.spec.containers[0].livenessProbe
+      - exists:
+          path: spec.template.spec.containers[0].readinessProbe
+
+  - it: should configure startup timing independently of the other probes
+    template: templates/deployment.yaml
+    set:
+      startupProbe:
+        initialDelaySeconds: 2
+        periodSeconds: 3
+        timeoutSeconds: 1
+        failureThreshold: 60
+      livenessProbe.enabled: false
+      readinessProbe.enabled: false
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].startupProbe
+          value:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 2
+            periodSeconds: 3
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 60
+      - notExists:
+          path: spec.template.spec.containers[0].livenessProbe
+      - notExists:
+          path: spec.template.spec.containers[0].readinessProbe
+
+  - it: should omit the startup probe when disabled
+    template: templates/deployment.yaml
+    set:
+      startupProbe.enabled: false
+    asserts:
+      - notExists:
+          path: spec.template.spec.containers[0].startupProbe
+      - exists:
+          path: spec.template.spec.containers[0].livenessProbe
+      - exists:
+          path: spec.template.spec.containers[0].readinessProbe

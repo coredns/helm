@@ -188,6 +188,14 @@ servers:
 #     parameters: /opt/coredns/*.conf
 extraConfig: {}
 
+# The startup probe requires the health plugin on port 8080.
+startupProbe:
+  enabled: true
+  initialDelaySeconds: 0
+  periodSeconds: 2
+  timeoutSeconds: 5
+  failureThreshold: 30
+
 # To use the livenessProbe, the health plugin needs to be enabled in CoreDNS' server config
 # The health plugin answers as soon as CoreDNS runs, so the probe needs no
 # initial delay; failureThreshold 5 every 10 s still allows 50 s to start.

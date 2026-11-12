@@ -133,6 +133,18 @@ spec:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
 {{ include "coredns.containerPorts" . | indent 8 }}
+        {{- if .Values.startupProbe.enabled }}
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: {{ .Values.startupProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.startupProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.startupProbe.timeoutSeconds }}
+          successThreshold: 1
+          failureThreshold: {{ .Values.startupProbe.failureThreshold }}
+        {{- end }}
         {{- if .Values.livenessProbe.enabled }}
         livenessProbe:
           httpGet:
