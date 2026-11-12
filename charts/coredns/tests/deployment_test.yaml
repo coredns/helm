@@ -128,3 +128,41 @@ tests:
             - containerPort: 853
               name: tcp-853
               protocol: TCP
+
+  - it: should start the readiness probe without a delay by default
+    template: templates/deployment.yaml
+    documentIndex: 0
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].readinessProbe.initialDelaySeconds
+          value: 0
+
+  - it: should take the readiness delay from values
+    set:
+      readinessProbe:
+        initialDelaySeconds: 10
+    template: templates/deployment.yaml
+    documentIndex: 0
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].readinessProbe.initialDelaySeconds
+          value: 10
+
+  - it: should start the liveness probe without a delay by default
+    template: templates/deployment.yaml
+    documentIndex: 0
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].livenessProbe.initialDelaySeconds
+          value: 0
+
+  - it: should take the liveness delay from values
+    set:
+      livenessProbe:
+        initialDelaySeconds: 30
+    template: templates/deployment.yaml
+    documentIndex: 0
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].livenessProbe.initialDelaySeconds
+          value: 30
