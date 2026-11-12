@@ -3,6 +3,36 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: The readiness probe starts without an initial delay (readinessProbe.initialDelaySeconds 0), so a pod receives queries once the ready plugin reports it ready, not 30 s later
+        - kind: changed
+          description: The liveness probe starts without an initial delay (livenessProbe.initialDelaySeconds 0); failureThreshold 5 and periodSeconds 10 still give a starting pod 50 s before a restart
+    apiVersion: v2
+    appVersion: 1.14.7
+    created: "2026-11-12T11:09:48.546050475Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: a3e94f14ef790566dc0936df90f52a1e21c727469d7bfa69b02ebd765f4b9a5d
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.50.5/coredns-1.50.5.tgz
+    version: 1.50.5
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Do not render service.trafficDistribution on its own when deployment.enabled is false
     apiVersion: v2
@@ -2593,4 +2623,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2026-11-10T08:07:50.025855178Z"
+generated: "2026-11-12T11:09:48.54621184Z"
