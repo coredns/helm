@@ -3,6 +3,34 @@ entries:
   coredns:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: terminationMessagePolicy, FallbackToLogsOnError by default, so a CoreDNS container that exits with an error shows the reason in its status
+    apiVersion: v2
+    appVersion: 1.14.7
+    created: "2026-11-13T07:56:58.158631363Z"
+    description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+      DNS Services
+    digest: 75b7fabc8da6be95ded7dd31eca5656a3bd06bb72d4cbc2b168183a98734d2a0
+    home: https://coredns.io
+    icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+    keywords:
+    - coredns
+    - dns
+    - kubedns
+    maintainers:
+    - name: mrueg
+    - name: haad
+    - name: hagaibarel
+    - name: shubham-cmyk
+    name: coredns
+    sources:
+    - https://github.com/coredns/coredns
+    type: application
+    urls:
+    - https://github.com/coredns/helm/releases/download/coredns-1.50.6/coredns-1.50.6.tgz
+    version: 1.50.6
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: The readiness probe starts without an initial delay (readinessProbe.initialDelaySeconds 0), so a pod receives queries once the ready plugin reports it ready, not 30 s later
         - kind: changed
@@ -2623,4 +2651,4 @@ entries:
     urls:
     - https://github.com/coredns/helm/releases/download/coredns-1.14.0/coredns-1.14.0.tgz
     version: 1.14.0
-generated: "2026-11-12T11:09:48.54621184Z"
+generated: "2026-11-13T07:56:58.158964393Z"
