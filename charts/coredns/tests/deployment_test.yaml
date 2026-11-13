@@ -166,3 +166,34 @@ tests:
       - equal:
           path: spec.template.spec.containers[0].livenessProbe.initialDelaySeconds
           value: 30
+
+  - it: should mount extraSecrets readable by the non-root CoreDNS user by default
+    set:
+      extraSecrets:
+        - name: etcd-client-certs
+          mountPath: /etc/coredns/tls/etcd
+    template: templates/deployment.yaml
+    asserts:
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: etcd-client-certs
+            secret:
+              secretName: etcd-client-certs
+              defaultMode: 0444
+
+  - it: should keep an explicit extraSecrets defaultMode
+    set:
+      extraSecrets:
+        - name: etcd-client-certs
+          mountPath: /etc/coredns/tls/etcd
+          defaultMode: 288
+    template: templates/deployment.yaml
+    asserts:
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: etcd-client-certs
+            secret:
+              secretName: etcd-client-certs
+              defaultMode: 288

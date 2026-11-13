@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.50.5
+version: 1.50.6
 appVersion: 1.14.7
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -19,7 +19,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: The readiness probe starts without an initial delay (readinessProbe.initialDelaySeconds 0), so a pod receives queries once the ready plugin reports it ready, not 30 s later
-    - kind: changed
-      description: The liveness probe starts without an initial delay (livenessProbe.initialDelaySeconds 0); failureThreshold 5 and periodSeconds 10 still give a starting pod 50 s before a restart
+    - kind: fixed
+      description: extraSecrets are mounted with mode 0444 by default instead of 400 (decimal, so 0620), which the non-root CoreDNS user could not read
