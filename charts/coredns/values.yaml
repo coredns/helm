@@ -286,13 +286,16 @@ extraVolumeMounts: []
 
 # optional array of secrets to mount inside coredns container
 # possible usecase: need for secure connection with etcd backend
+# defaultMode is a decimal file mode and defaults to 292 (0444). CoreDNS runs
+# as uid 65532 and the files are owned by root, so they must stay readable by
+# others unless podSecurityContext.fsGroup is set.
 extraSecrets: []
 # - name: etcd-client-certs
 #   mountPath: /etc/coredns/tls/etcd
 #   defaultMode: 420
 # - name: some-fancy-secret
 #   mountPath: /etc/wherever
-#   defaultMode: 440
+#   defaultMode: 288
 
 # optional array of environment variables for coredns container
 # possible usecase: provides username and password for etcd user authentications

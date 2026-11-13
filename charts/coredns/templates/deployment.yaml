@@ -179,7 +179,7 @@ spec:
         - name: {{ .name }}
           secret:
             secretName: {{ .name }}
-            defaultMode: {{ default 400 .defaultMode }}
+            defaultMode: {{ .defaultMode | default 0444 }}
 {{- end }}
 {{- if .Values.extraVolumes }}
 {{ toYaml .Values.extraVolumes | indent 8 }}
