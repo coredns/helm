@@ -1,6 +1,6 @@
 apiVersion: v2
 name: coredns
-version: 1.50.7
+version: 1.50.8
 appVersion: 1.14.7
 home: https://coredns.io
 icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
@@ -10,8 +10,8 @@ keywords:
   - dns
   - kubedns
 sources:
-  - https://github.com/coredns/coredns
   - https://github.com/coredns/helm
+  - https://github.com/coredns/coredns
 maintainers:
   - name: mrueg
   - name: haad
@@ -20,5 +20,5 @@ maintainers:
 type: application
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: The chart repository (https://github.com/coredns/helm) in sources, so tools such as Renovate find the chart's release notes when it is installed from the OCI registry
+    - kind: changed
+      description: The chart repository (https://github.com/coredns/helm) is the first entry in sources, so helm push sets it as the OCI chart's org.opencontainers.image.source annotation and Renovate finds the chart's release notes
